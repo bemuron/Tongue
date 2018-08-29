@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/white"
+        android:gravity="center"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center" >
+
+            <include
+                layout="@layout/app_bar_main2"
+                android:layout_width="match_parent"
+                android:id="@+id/app_bar"
+
+                android:layout_height="wrap_content" /></RelativeLayout>
+        <RelativeLayout
+
+            android:id="@+id/content"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/header"
+            android:gravity="center" >
+            <android.support.v4.widget.DrawerLayout android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@android:color/white"
+                android:id="@+id/mDrawerLayuot"
+                >
+
+
+                <RelativeLayout android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    >
+
+                    <ScrollView
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        >
+                        <RelativeLayout
+                            android:id="@+id/activity_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:orientation="vertical"
+                                >
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_marginTop="10dp"                    android:id="@+id/lay1"
+                                        android:layout_marginLeft="20px"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:src="@drawable/my_center_register"
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:id="@+id/complete_registration"
+                                            />
+                                        <!--suppress AndroidDomInspection -->
+
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+
+                                            android:layout_marginBottom="@dimen/content_inset"
+
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Registration"
+                                            tools:text="Registration"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_marginTop="10dp"                            android:layout_width="wrap_content"
+                                        android:id="@+id/lay2"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="30dp"
+
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:src="@drawable/coloured_profile2"
+
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:layout_marginRight= "1dp"
+                                            android:id="@+id/profile"/>
+                                        <!--suppress AndroidDomInspection -->
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+
+                                            android:paddingBottom="50dp"
+
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Profile"
+                                            tools:text="Profile"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:id="@+id/lay4"
+                                        android:layout_marginLeft="20px"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:id="@+id/consumer_payments"
+                                            />
+                                        <!--suppress AndroidDomInspection -->
+
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Payments"
+                                            tools:text="Payments"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:id="@+id/lay3"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="30dp"
+
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:id="@+id/consumer_produces"
+                                            />
+                                        <!--suppress AndroidDomInspection -->
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Products"
+                                            tools:text="Products"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+
+                                    android:layout_height="wrap_content">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:id="@+id/lay5"
+                                        android:layout_marginLeft="20px"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:src="@drawable/system_upgrade"
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:layout_marginRight= "1dp"
+                                            android:id="@+id/consumer_share"/>
+                                        <!--suppress AndroidDomInspection -->
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+
+                                            android:paddingBottom="30dp"
+
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Contact Administrator"
+                                            tools:text="Contact Administrator"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:id="@+id/lay6"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="30dp"
+
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:src="@drawable/coloured_profile2"
+
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:layout_marginRight= "1dp"
+                                            android:id="@+id/consumer_profile1"/>
+                                        <!--suppress AndroidDomInspection -->
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+
+                                            android:paddingBottom="50dp"
+
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Profile"
+                                            tools:text="Profile"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+android:visibility="gone"
+                                    android:layout_height="wrap_content">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:id="@+id/lay556"
+                                        android:layout_marginLeft="20px"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:layout_marginRight= "1dp"
+                                            android:id="@+id/tractor"/>
+                                        <!--suppress AndroidDomInspection -->
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+
+                                            android:paddingBottom="30dp"
+
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Get Machine"
+                                            tools:text="Get Machine"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:id="@+id/lay688"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="30dp"
+android:visibility="gone"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+
+                                            app:bootstrapBrand="success"
+                                            app:hasBorder="true"
+                                            android:layout_marginRight= "1dp"
+                                            android:id="@+id/loan"/>
+                                        <!--suppress AndroidDomInspection -->
+
+                                        <com.beardedhen.androidbootstrap.AwesomeTextView
+                                            android:layout_width="fill_parent"
+                                            android:textColor="@android:color/black"
+                                            android:layout_height="wrap_content"
+
+                                            android:paddingBottom="50dp"
+
+                                            android:layout_marginRight="@dimen/content_inset"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:textAlignment="textStart"
+                                            android:layout_gravity="start"
+                                            android:lines="2"
+
+                                            android:textSize="@dimen/body_text_size"
+
+                                            tools:ignore="UnusedAttribute"
+                                            android:text="Loan"
+                                            tools:text="Loan"
+                                            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                                            />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+android:visibility="gone"
+                                    android:layout_height="wrap_content">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+
+                                        android:layout_marginLeft="20px"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="30dp"
+
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+
+
+
+                                    </LinearLayout></RelativeLayout>
+
+
+
+
+
+
+
+                            </LinearLayout></RelativeLayout>
+                    </ScrollView>
+                </RelativeLayout>
+                <android.support.v7.widget.RecyclerView
+
+                    android:layout_width="320dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recyclerView_home"
+                    android:layout_gravity="left"
+                    android:background="@color/colorPrimary"
+                    android:scrollbars="vertical"
+
+
+                    >
+                </android.support.v7.widget.RecyclerView>
+            </android.support.v4.widget.DrawerLayout>
+        </RelativeLayout>
+        <RelativeLayout
+
+            android:id="@+id/footer"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+
+
+
+            android:gravity="center" >
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:background="@color/stop"
+                android:layout_height="wrap_content">
+                <View
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"/>
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bootstrapBrand="secondary"
+                    style="@style/txt_style_copyright"
+
+                    android:text="@string/copyright"
+                    />
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bootstrapBrand="secondary"
+                    style="@style/txt_style_copyright"
+
+                    android:text="All rights reserved."
+
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/side_menu_header_layout"
+        android:background="@android:color/white"
+        android:textColor="@color/bootstrap_brand_secondary_border"
+        android:theme="@style/Theme.AppCompat.Light"
+
+        app:menu="@menu/activity_main_drawer">
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:id="@+id/lay22"
+            android:layout_gravity="bottom"
+            android:background="@color/stop"
+            android:layout_height="wrap_content">
+            <View
+
+                android:background="@color/colorPrimary"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="2dp"/>
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="secondary"
+                style="@style/txt_style_copyright"
+
+                android:clickable="true"
+                android:text="@string/copyright"
+
+                />
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="secondary"
+                style="@style/txt_style_copyright"
+
+                android:clickable="true"
+                android:text="All rights reserved."
+
+                />
+        </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
+
+</RelativeLayout>

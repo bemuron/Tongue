@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:id="@+id/activity_main"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <RelativeLayout
+        android:id="@+id/header"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:background="@color/colorAccent"
+            android:layout_height="?attr/actionBarSize">
+            <TextView
+                android:id="@+id/email"
+                android:paddingTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:text="Email"
+                android:visibility="visible"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                />
+
+       </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:id="@+id/one"
+        android:paddingTop="10dp"
+
+        android:layout_height="wrap_content"
+
+        android:gravity="center">
+        <com.beardedhen.androidbootstrap.BootstrapThumbnail
+            android:id="@+id/bootstrapCircleThumbnail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="logo"
+            android:gravity="center"
+            android:src="@mipmap/logo3"
+            app:bootstrapBrand="secondary"
+            app:hasBorder="false" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/one"
+        android:orientation="vertical" android:layout_marginBottom="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:layout_gravity="center_vertical|right"
+            android:clickable="true"
+            android:text="@string/description"
+            android:id="@+id/first_text"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:textColor="@android:color/white"
+            android:text="name"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent" android:orientation="vertical"
+
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent" android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/user_account_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:text="Account type"
+                    android:layout_weight="1"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    android:textStyle="bold"
+
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent" android:layout_weight="2"
+                    android:layout_height="wrap_content" android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/app_version"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="#ffffff" android:gravity="center_vertical"
+android:visibility="gone"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        android:paddingStart="5dp"
+                        android:textStyle="normal"
+                        android:layout_gravity="right"
+                        android:paddingLeft="5dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

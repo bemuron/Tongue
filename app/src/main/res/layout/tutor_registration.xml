@@ -1,0 +1,1547 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:background="@drawable/customborder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+
+    >
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:background="@android:color/white"
+
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        >
+
+        <include
+            layout="@layout/app_bar_main"
+            android:layout_width="match_parent"
+            android:id="@+id/app_bar"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+
+        android:id="@+id/content"
+
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/header"
+        >
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="150dp">
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="First Name *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+            android:orientation="horizontal">
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:id="@+id/edtFirstname"
+                style="@style/edt_style"
+                android:focusable="true"
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:inputType="textCapWords"
+                android:textSize="12.0dp"
+                android:textColor="@android:color/black"
+
+
+
+
+                />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Last Name *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+
+            android:orientation="horizontal">
+
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:textColorHighlight="@android:color/transparent"
+                android:id="@+id/edtLastname"
+                style="@style/edt_style"
+                android:focusable="true"
+
+
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:inputType="textCapWords"
+                android:textSize="12.0dp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorWhiteEdt"
+
+
+                />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Country *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:background="@layout/rounded_border_textview"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp">
+                <AutoCompleteTextView
+                    android:id="@+id/spinner_country"
+
+
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    style="@style/edt_style"
+                    android:focusable="true"
+                    android:textColorHighlight="@android:color/transparent"
+
+                    android:inputType="text"
+                    android:maxLines="1"
+
+                    android:text="">
+
+
+                </AutoCompleteTextView></RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NIN Number *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+
+            android:orientation="horizontal">
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:id="@+id/nin_number"
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_centerHorizontal="true"
+                style="@style/edt_style"
+
+                android:focusable="true"
+
+                android:textColorHint="@color/colorWhiteEdt"
+                android:maxLines="3"
+                app:roundedCorners="true"
+                android:textSize="12.0dp"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="40dp"
+                android:layout_marginEnd="10dp"
+
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:inputType="number"
+                android:maxLength="10"
+                />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Contact"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+
+            android:orientation="horizontal">
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:id="@+id/edtContact"
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_centerHorizontal="true"
+                style="@style/edt_style"
+                android:focusable="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:textColorHint="@color/colorWhiteEdt"
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:textSize="12.0dp"
+                android:hint=" 0701 000000"
+                android:inputType="number"
+                android:maxLength="10"
+                />
+        </LinearLayout>
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Email"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+
+            android:orientation="horizontal">
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:id="@+id/edtEmail"
+                android:layout_centerHorizontal="true"
+                style="@style/edt_style"
+
+                android:focusable="true"
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_marginLeft="10dp"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/colorWhiteEdt"
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:textSize="12.0dp"
+
+                />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Date of birth *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+
+
+            android:orientation="horizontal">
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:id="@+id/edtWDate"
+                style="@style/edt_style"
+                android:focusable="true"
+                android:textColorHighlight="@android:color/transparent"
+                android:enabled="false"
+                android:layout_margin="10dp"
+
+                android:inputType="date"
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:textSize="14.0sp"
+
+                />
+
+        </LinearLayout>    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+
+        android:orientation="horizontal">
+        <android.support.v7.widget.CardView android:layout_weight="3"
+            android:layout_width="wrap_content" app:cardBackgroundColor="@color/bootstrap_brand_success"
+            android:padding="5dp" app:cardCornerRadius="8dp"
+
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:padding="3dp"
+                android:id="@+id/txtWPickDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:gravity="center"
+                android:inputType="textCapCharacters"
+                android:onClick="handleButtonClicks"
+                android:textColor="@android:color/white"
+                android:text="Select" />
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15.0dip"
+            android:layout_marginTop="0.0dip"
+            android:orientation="horizontal"
+            android:paddingRight="5.0dip">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="1.0dip"
+                    app:cardBackgroundColor="@android:color/white"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="8dp"
+                    >
+
+
+                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                        style="@style/txt_style_level1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Gender *"
+                        android:textColor="@android:color/black"
+
+                        />
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout></LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@layout/rounded_border_textview"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp">
+
+                <Spinner
+
+                    android:id="@+id/spinner_sex"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    android:popupBackground="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog"
+                    android:layout_centerVertical="true"
+                    android:entries="@array/sex"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingRight="20dp"
+                    android:textSize="12.0dp"
+                    android:typeface="serif"
+
+                    android:dropDownWidth="wrap_content"
+                    android:dropDownSelector="@color/bootstrap_brand_success"
+                    android:tag="Gender"
+                    android:soundEffectsEnabled="true"
+                    android:splitMotionEvents="true"
+                    android:pointerIcon="hand"
+
+
+                    />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1.0dip"
+                app:cardBackgroundColor="@android:color/white"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="8dp"
+                >
+
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    style="@style/txt_style_level1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Years of experience *"
+                    android:textColor="@android:color/black"
+
+                    />
+            </android.support.v7.widget.CardView>
+
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+            <NumberPicker
+                android:id="@+id/numberPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+
+
+        </LinearLayout>    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+
+        android:orientation="horizontal">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Salary/Day *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+    </LinearLayout>    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/numberPickersalary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+
+    </LinearLayout>
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="District *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="15.0dip"
+                android:layout_marginRight="15.0dip"
+                android:background="@layout/rounded_border_textview"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp">
+                <AutoCompleteTextView
+                    android:id="@+id/district"
+
+
+                    android:paddingTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    style="@style/edt_style"
+                    android:focusable="true"
+                    android:textColorHighlight="@android:color/transparent"
+
+                    android:inputType="text"
+                    android:maxLines="1"
+
+
+
+                    android:text="">
+
+
+                </AutoCompleteTextView></RelativeLayout>
+        </LinearLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Residential Address"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:bootstrapSize="md"
+                android:inputType="textMultiLine|textNoSuggestions"
+                app:bootstrapBrand="success"
+                android:id="@+id/address"
+                style="@style/edt_style"
+                android:focusable="true"
+
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_margin="10dp"
+
+                android:maxLines="10"
+                app:roundedCorners="true"
+                android:textSize="14.0sp"
+
+                />
+
+
+        </LinearLayout>
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Languages Spoken"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+
+
+
+
+
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:id="@+id/language"
+                style="@style/edt_style"
+
+                android:focusable="true"
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_margin="10dp"
+
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:inputType="textCapWords"
+                android:textSize="12.0dp"
+                android:textColor="@android:color/black"
+
+
+
+
+                />
+
+
+        </LinearLayout>
+
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Next of Kin *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+
+                app:bootstrapBrand="success"
+                android:id="@+id/next"
+                style="@style/edt_style"
+                android:focusable="true"
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_margin="10dp"
+
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:inputType="textCapWords"
+                android:textSize="12.0dp"
+                android:textColor="@android:color/black"
+
+
+
+
+                />
+
+
+        </LinearLayout>
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Describe yourself *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:bootstrapSize="md"
+
+                app:bootstrapBrand="success"
+                android:id="@+id/description"
+                style="@style/edt_style"
+                android:focusable="true"
+
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_margin="10dp"
+
+                app:roundedCorners="true"
+
+                android:layout_gravity="left"
+                android:gravity="top"
+                android:background="@color/peacockBlue"
+                android:textSize="14dp"
+                android:hint="Enter Description"
+                android:maxLength="400"
+                android:inputType="textMultiLine"
+                android:layout_weight="1"
+                android:ellipsize="none"
+                android:maxLines="100"
+                android:scrollHorizontally="false"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Next of Kin Contact*"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5.0dip"
+                android:layout_marginLeft="15.0dip"
+                app:cardBackgroundColor="@android:color/white"
+                android:layout_marginTop="8.0dip"
+                >
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="6.0sp"
+
+                    android:textColor="@android:color/black"
+                    android:textSize="12.0dp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+
+        android:orientation="horizontal">
+
+
+
+
+
+        <com.beardedhen.androidbootstrap.BootstrapEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:bootstrapSize="md"
+            app:bootstrapBrand="success"
+            android:id="@+id/nextContact"
+            android:textColorHighlight="@android:color/transparent"
+            android:layout_centerHorizontal="true"
+            style="@style/edt_style"
+            android:focusable="true"
+            android:layout_margin="10dp"
+            android:textColorHint="@color/colorWhiteEdt"
+            android:maxLines="1"
+            app:roundedCorners="true"
+            android:textSize="12.0dp"
+            android:hint=" 0701 000000"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+
+    </LinearLayout>
+
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Next of kin relationship *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="success"
+                android:id="@+id/nextrelationship"
+                style="@style/edt_style"
+                android:focusable="true"
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_margin="10dp"
+
+                android:maxLines="1"
+                app:roundedCorners="true"
+                android:inputType="textCapWords"
+                android:textSize="12.0dp"
+                android:textColor="@android:color/black"
+
+                />
+        </LinearLayout>
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.0dip"
+            app:cardBackgroundColor="@android:color/white"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="8dp"
+            >
+
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                style="@style/txt_style_level1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Next of kin address *"
+                android:textColor="@android:color/black"
+
+                />
+        </android.support.v7.widget.CardView>
+
+
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+
+            android:orientation="horizontal">
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:bootstrapSize="md"
+                android:inputType="textMultiLine|textNoSuggestions"
+                app:bootstrapBrand="success"
+                android:id="@+id/nextaddress"
+                style="@style/edt_style"
+                android:focusable="true"
+
+                android:textColorHighlight="@android:color/transparent"
+                android:layout_margin="10dp"
+
+                android:maxLines="10"
+                app:roundedCorners="true"
+                android:textSize="14.0sp"
+
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/aluminium"
+        android:gravity="right"
+
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:weightSum="1"
+       >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:text="Languages Taught"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/peacockBlue"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/enter_subjects"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:background="@color/peacockBlue"
+            android:hint="English, French, ..."
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"
+            android:textColorHint="#ffffff" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:text="Available"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/peacockBlue"
+                android:textSize="18dp" />
+
+            <Spinner
+                android:id="@+id/availability_spinner"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="74dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:text="Hourly\nRate"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/peacockBlue"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/enter_hourly_rate"
+                android:layout_width="220dp"
+                android:layout_height="match_parent"
+                android:background="@color/peacockBlue"
+                android:hint="Enter rate in $/hour"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textColorHighlight="#ffffff"
+                android:textColorHint="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/rating_title"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Rating"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/peacockBlue"
+                android:textSize="18dp"
+                android:layout_weight="1.01" />
+
+            <RatingBar
+                style="?android:attr/ratingBarStyleIndicator"
+                android:backgroundTint="@color/peacockBlue"
+                android:id="@+id/ratingBar"
+                android:layout_marginRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:numStars="5"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="rc"
+                android:textColor="@color/peacockBlue"
+                android:id="@+id/rate_count" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="351dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:text="Description 400/400"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_marginTop="7dp"
+            android:textColor="@color/peacockBlue"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:id="@+id/descTextView" />
+
+        <EditText
+            android:id="@+id/enter_description"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="left"
+            android:gravity="top"
+            android:background="@color/peacockBlue"
+            android:textSize="14dp"
+            android:hint="Enter Description"
+            android:maxLength="400"
+            android:inputType="textMultiLine"
+            android:layout_weight="1"
+            android:ellipsize="none"
+            android:maxLines="100"
+            android:scrollHorizontally="false"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"
+            android:textColorHint="#ffffff" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:text="Profile Picture"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/peacockBlue"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/pro_pic"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="#246971" />
+
+        <Button
+            android:id="@+id/upload_image"
+            style="?android:textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_alignBottom="@+id/enter_description"
+            android:allowUndo="true"
+            android:text="Upload Image"
+            android:textColor="@color/peacockBlue"
+            android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent" android:gravity="center"
+
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="20dp"
+
+                android:layout_height="wrap_content">
+
+
+
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    app:bootstrapBrand="success"
+                    android:onClick="signUpOnClick"
+                    app:bootstrapSize="md"
+                    app:buttonMode="regular"
+                    app:showOutline="false"
+                    app:roundedCorners="true"/>
+                <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:animated="true"
+                    app:bootstrapBrand="success"
+                    app:bootstrapSize="sm"
+                    app:roundedCorners="true"
+                    app:bootstrapProgress="100"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/progressBar1"
+                    android:layout_below="@id/app_bar"
+                    app:striped="true"
+
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout></LinearLayout></ScrollView></RelativeLayout></RelativeLayout></android.support.v4.widget.DrawerLayout>

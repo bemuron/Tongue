@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="GoogleMapsKey">AIzaSyCD_HNowG-__zp_RJ3I4bBjaGr3TOoYOVo</string>
+    <string name="branch_live">pk_37f9a0fb5e6d34247443539da14e02b9f3ca9bab</string>
+    <string name="branch_test">pk_test_679212919fba03f0f40517bcc3c16ed6846fb324</string>
+</resources>

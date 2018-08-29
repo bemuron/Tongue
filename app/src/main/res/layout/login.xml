@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            >
+
+            <include
+                layout="@layout/app_bar_main"
+                android:layout_width="match_parent"
+                android:id="@+id/app_bar"
+                android:layout_height="wrap_content" />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+
+            android:id="@+id/content"
+
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/header"
+            >
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="8dp"
+
+                app:cardBackgroundColor="@color/secondaryColor"
+
+                >
+
+            <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+
+                >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:gravity="center"
+                        android:id="@+id/lay1"
+
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_logo"
+
+                            android:layout_gravity="center"
+
+                            android:layout_margin="10dp"
+                            android:src="@mipmap/logo3"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/email_login_form"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+
+                        android:orientation="vertical">
+
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="8.0dip"
+                            app:cardBackgroundColor="@color/secondaryColor"
+                            app:cardCornerRadius="8dp">
+
+
+                            <TextView
+                                style="@style/txt_style_level1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/prompt_email"
+                                android:textColor="@color/black"
+
+                                />
+                        </android.support.v7.widget.CardView>
+
+
+                        <com.beardedhen.androidbootstrap.BootstrapEditText
+                            android:id="@+id/email"
+                            style="@style/edt_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:imeActionId="@integer/customImeActionId"
+                            android:focusable="true"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:textColor="@color/bootstrap_brand_secondary_text"
+                            android:textColorHighlight="@android:color/transparent"
+                            android:textColorHint="@color/colorWhiteEdt"
+                            android:textSize="18sp"
+                            app:bootstrapBrand="primary"
+                            app:bootstrapSize="md"
+                            app:roundedCorners="true"
+
+                            />
+
+                        <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                            android:id="@+id/progressBar1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="50dp"
+                            android:textColorHighlight="@android:color/transparent"
+                            android:visibility="gone"
+                            app:animated="true"
+                            app:bootstrapBrand="primary"
+                            android:imeActionId="@integer/customImeActionId"
+                            app:bootstrapProgress="100"
+                            app:bootstrapSize="sm"
+                            app:roundedCorners="true"
+
+                            app:striped="true"
+
+                            />
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1.0dip"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="10dp"
+                            app:cardBackgroundColor="@color/secondaryColor"
+                            app:cardCornerRadius="8dp">
+
+
+                            <TextView
+                                style="@style/txt_style_level1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/prompt_password"
+                                android:textColor="@color/black"
+
+
+                                />
+                        </android.support.v7.widget.CardView>
+
+                        <com.beardedhen.androidbootstrap.BootstrapEditText
+                            android:id="@+id/password"
+                            style="@style/edt_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp"
+                            android:focusable="true"
+                            android:imeActionId="@integer/customImeActionId"
+
+                            android:imeActionLabel="@string/action_sign_in_short"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:singleLine="true"
+
+                            android:textColor="@color/bootstrap_brand_secondary_text"
+                            android:textColorHint="@color/colorWhiteEdt"
+                            android:textSize="12sp"
+                            app:bootstrapBrand="primary"
+                            app:bootstrapSize="md"
+                            app:roundedCorners="true" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="40dp"
+                            android:layout_marginLeft="40dp"
+
+                            android:layout_marginRight="40dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginTop="10dp"
+
+                            android:gravity="center"
+                            android:paddingTop="10dp">
+
+
+                            <com.beardedhen.androidbootstrap.BootstrapButton
+                                android:id="@+id/email_sign_in_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/action_sign_in"
+                                app:bootstrapBrand="primary"
+                                app:bootstrapSize="md"
+                                app:buttonMode="regular"
+                                app:roundedCorners="true"
+                                app:showOutline="false" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/bottom_links_margin"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.beardedhen.androidbootstrap.AwesomeTextView
+
+                                android:id="@+id/txt_signup"
+                                style="@style/txt_style_level1"
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:onClick="checkOption"
+                                android:text="@string/prompt_signup"
+                                android:textSize="12dp"
+                                app:bootstrapBrand="primary"
+
+                                />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+
+                            <com.beardedhen.androidbootstrap.AwesomeTextView
+
+                                android:id="@+id/txt_forgot_password"
+                                style="@style/txt_style_level1"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:onClick="checkOption"
+                                android:text="@string/prompt_forgot_password"
+                                android:textSize="12dp"
+                                app:bootstrapBrand="primary"
+
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="150dp"
+
+                        />
+
+
+
+
+                </LinearLayout>
+
+
+            </ScrollView>
+
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+
+            android:id="@+id/footer"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:background="@color/stop"
+
+
+            android:gravity="center" >
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"        android:id="@+id/lay2"
+
+                android:orientation="vertical"
+
+
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    style="@style/txt_style_copyright"
+android:textColor="@color/black"
+                    android:clickable="true"
+                    android:text="@string/copyright"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+android:textColor="@color/black"
+                    style="@style/txt_style_copyright"
+
+                    android:clickable="true"
+                    android:text="All rights reserved."
+
+                    />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+

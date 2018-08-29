@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <group android:checkableBehavior="single" >
+
+        <item android:title="@string/about_contact_us">
+            <menu>
+
+                <item
+                    android:id="@+id/Admin"
+                    android:textColor="@color/bootstrap_brand_secondary_border"
+                    android:icon="@drawable/ic_web_black_24dp"
+                    android:title="@string/about_website" />
+
+
+            </menu></item>
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_call_black_24dp"
+            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:title="000000000000" />
+
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_email_black_24dp"
+            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:title="tongue@gmail.com"
+            />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:visible="false"
+            android:icon="@drawable/ic_arrow_back_black_24dp"
+            android:textColor="@color/bootstrap_brand_secondary_border"
+            android:title="Slideshow" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools"
+            android:visible="false"
+            android:textColor="@color/bootstrap_brand_secondary_border"/>
+
+
+
+    </group>
+
+    <item android:title="Social Media">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/about_icon_facebook"
+                android:textColor="@android:color/black"
+
+                android:title="@string/about_facebook" />
+            <item
+
+                android:id="@+id/nav_send"
+
+                android:textColor="@color/bootstrap_brand_secondary_border"
+                android:icon="@drawable/ic_smartphone_black_24dp"
+                android:title="@string/watsapp" />
+            <item
+
+                android:id="@+id/twitter"
+                android:textColor="@color/bootstrap_brand_secondary_border"
+                android:icon="@drawable/about_icon_twitter"
+                android:title="@string/about_twitter" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_arrow_back_black_24dp"
+                android:textColor="@color/bootstrap_brand_secondary_border"
+                android:title="Log Out" />
+            <item
+                android:title=""
+                android:enabled="false" >
+            </item>
+        </menu>
+    </item>
+
+
+
+</menu>

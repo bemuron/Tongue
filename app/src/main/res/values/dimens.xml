@@ -1,0 +1,141 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Standard Margin Dimensions -->
+    <dimen name="margin_very_low">2dp</dimen>
+    <dimen name="margin_low">4dp</dimen>
+    <dimen name="margin_base">8dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_high">16dp</dimen>
+    <dimen name="margin_xhigh">24dp</dimen>
+    <dimen name="margin_xxhigh">28dp</dimen>
+    <dimen name="margin_xxxhigh">32dp</dimen>
+    <dimen name="margin_huge">56dp</dimen>
+    <dimen name="margin_max">72dp</dimen>
+    <dimen name="bottom_links_margin">22dp</dimen>
+    <!-- Standard Padding Dimensions -->
+
+    <dimen name="padding_low">4dp</dimen>
+    <dimen name="padding_base">8dp</dimen>
+    <dimen name="padding_medium">12dp</dimen>
+    <dimen name="padding_high">16dp</dimen>
+    <dimen name="padding_xhigh">24dp</dimen>
+    <dimen name="padding_xxhigh">28dp</dimen>
+    <dimen name="padding_xxxhigh">32dp</dimen>
+    <dimen name="padding_huge">56dp</dimen>
+    <dimen name="padding_max">72dp</dimen>
+    <dimen name="text_size">30dp</dimen>
+    <dimen name="selected_text_size">35dp</dimen>
+    <!-- Standard Text Dimensions -->
+    <dimen name="text_very_small">10sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_base">14sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_very_large">24sp</dimen>
+    <dimen name="text_extra_large">32sp</dimen>
+
+    <!-- Button dimensions -->
+    <dimen name="cta_button_size">50dp</dimen>
+    <dimen name="home_cta_bottom_layout_size">160dp</dimen>
+    <dimen name="cta_button_radius">25dp</dimen>
+
+    <!-- Standard Elevation Dimensions-->
+    <dimen name="elevation_base">2dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+    <dimen name="elevation_high">8dp</dimen>
+
+    <!-- CardView Dimensions -->
+    <dimen name="card_radius">4dp</dimen>
+    <dimen name="card_radius_low">2dp</dimen>
+
+    <!-- Map Padding -->
+    <dimen name="image_view_size">125dp</dimen>
+    <dimen name="image_view_size_half">50dp</dimen>
+
+    <dimen name="drawer_header_subtitle_height">56dp</dimen>
+
+    <dimen name="hero_marker_image">48dp</dimen>
+    <dimen name="profile_image_size">100dp</dimen>
+
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="toolbar_user_icon">30dp</dimen>
+    <dimen name="margin_xxxxhigh">56dp</dimen>
+
+
+
+    <item name="match_parent" format="integer" type="dimen">-1</item>
+    <item name="wrap_content" format="integer" type="dimen">-2</item>
+
+    <dimen name="auth_page_margin">24dp</dimen>
+    <dimen name="folded_size">20sp</dimen>
+    <dimen name="unfolded_size">40sp</dimen>
+    <dimen name="option_size">56dp</dimen>
+    <dimen name="text_padding">16dp</dimen>
+    <dimen name="input_width">220dp</dimen>
+    <dimen name="label_size">20sp</dimen>
+    <dimen name="folded_label_padding">22sp</dimen>
+    <dimen name="logo_size">64dp</dimen>
+    <dimen name="guideline_margin">56dp</dimen>
+
+
+
+
+    <dimen name="padding_layout">8dp</dimen>
+    <dimen name="home_image">80dp</dimen>
+
+    <dimen name="general_margin">5dp</dimen>
+    <dimen name="actionBarSize">56.0dip</dimen>
+
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+
+
+
+
+    <dimen name="nav_drawer_item_hor_pad">24dp</dimen>
+
+    <dimen name="card_elevation">2dp</dimen>
+
+    <dimen name="content_inset_quarter">4dp</dimen>
+    <!-- Minus 2 for negative margin on cards -->
+    <dimen name="content_inset_half_card">6dp</dimen>
+    <dimen name="content_inset_half">8dp</dimen>
+
+    <dimen name="content_inset_less">12dp</dimen>
+    <dimen name="content_inset">16dp</dimen>
+    <dimen name="content_inset_more">24dp</dimen>
+
+    <dimen name="fab_bottom_margin">0dp</dimen>
+    <dimen name="fab_horizontal_margin">0dp</dimen>
+    <dimen name="list_with_fab_bottom_margin">84dp</dimen>
+
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="grid_margin">4dp</dimen>
+    <dimen name="grid_margin_icons">8dp</dimen>
+
+    <dimen name="card_sides_margin">1.41dp</dimen>
+    <dimen name="card_vertical_margin">0.41dp</dimen>
+
+
+    <dimen name="empty_text_size">24sp</dimen>
+
+    <dimen name="header_text_size">22sp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
+    <dimen name="content_text_size">16sp</dimen>
+    <dimen name="body_text_size">11sp</dimen>
+
+    <dimen name="quickapply_card_minheight">64dp</dimen>
+    <dimen name="apply_title_minheight">44dp</dimen>
+
+    <dimen name="drawer_header_height">196dp</dimen>
+    <dimen name="landing_page_icon_size">236dp</dimen>
+
+    <dimen name="second_keyline">72dp</dimen>
+    <dimen name="toolbar_horizontal_padding">4dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+
+</resources>

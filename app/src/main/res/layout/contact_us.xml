@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+
+
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:background="@android:color/white"
+
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:id="@+id/header"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
+
+        <include
+            layout="@layout/app_bar_main2"
+            android:layout_width="match_parent"
+            android:id="@+id/app_bar"
+
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+    <RelativeLayout
+
+        android:id="@+id/content"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/header"
+        android:gravity="center" >
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:background="@android:color/white"
+            android:paddingTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout android:layout_height="match_parent"
+                android:layout_width="match_parent"
+
+
+                >
+
+                <ScrollView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:visibility="visible"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/activity_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+
+                        tools:context="net.timo.mydagger.Home">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:orientation="vertical"
+                            >
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_marginLeft="20px"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+
+                                    <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+
+                                        app:bootstrapBrand="success"
+                                        app:hasBorder="true"
+                                        android:id="@+id/watsapp"
+                                        />
+                                    <!--suppress AndroidDomInspection -->
+                                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                                        android:textAlignment="textStart"
+                                        android:layout_gravity="start"
+                                        android:layout_width="fill_parent"
+                                        android:textColor="@android:color/black"
+                                        android:layout_height="wrap_content"
+
+                                        android:fontFamily="sans-serif-medium"
+
+                                        android:lines="2"
+
+                                        tools:ignore="UnusedAttribute"
+                                        android:text="Whatsapp"
+                                        tools:text="Whatsapp" />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:id="@+id/lay3"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="30dp"
+
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+
+                                    <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+
+                                        app:bootstrapBrand="success"
+                                        app:hasBorder="true"
+                                        android:id="@+id/call"
+                                        />
+                                    <!--suppress AndroidDomInspection -->
+                                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                                        android:textAlignment="textStart"
+                                        android:layout_gravity="start"
+                                        android:layout_width="fill_parent"
+                                        android:textColor="@android:color/black"
+                                        android:layout_height="wrap_content"
+
+
+                                        android:fontFamily="sans-serif-medium"
+
+                                        android:lines="2"
+
+
+
+                                        tools:ignore="UnusedAttribute"
+                                        android:text="Call"
+                                        tools:text="Call" />
+
+                                </LinearLayout>
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+
+                                android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:id="@+id/lay4"
+                                    android:layout_marginLeft="20px"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+
+                                    <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+
+                                        app:bootstrapBrand="success"
+                                        app:hasBorder="true"
+                                        android:id="@+id/email"
+                                        />
+                                    <!--suppress AndroidDomInspection -->
+                                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                                        android:id="@+id/title3"
+                                        android:layout_width="fill_parent"
+                                        android:textColor="@android:color/black"
+                                        android:layout_height="wrap_content"
+
+
+                                        android:fontFamily="sans-serif-medium"
+                                        android:textAlignment="textStart"
+                                        android:layout_gravity="start"
+                                        android:lines="2"
+
+
+                                        tools:ignore="UnusedAttribute"
+                                        android:text="Email"
+                                        tools:text="Email" />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="30dp"
+
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+
+
+                                    <com.beardedhen.androidbootstrap.BootstrapThumbnail
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+
+                                        app:bootstrapBrand="success"
+                                        app:hasBorder="true"
+                                        android:id="@+id/sms"
+                                        />
+                                    <!--suppress AndroidDomInspection -->
+                                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                                        android:id="@+id/title4"
+                                        android:layout_width="fill_parent"
+                                        android:textColor="@android:color/black"
+                                        android:layout_height="wrap_content"
+
+                                        android:fontFamily="sans-serif-medium"
+                                        android:textAlignment="textStart"
+                                        android:layout_gravity="start"
+                                        android:lines="2"
+
+
+                                        tools:ignore="UnusedAttribute"
+                                        android:text="SMS"
+                                        tools:text="SMS" />
+
+                                </LinearLayout>
+                            </RelativeLayout>
+
+
+
+
+
+
+
+
+                        </LinearLayout>
+
+
+
+                    </RelativeLayout>
+                </ScrollView>
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:id="@+id/lay2"
+
+                android:background="@android:color/background_dark"
+                android:layout_height="wrap_content">
+                <View
+
+                    android:background="@color/colorPrimary"
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="2dp"/>
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bootstrapBrand="secondary"
+                    style="@style/txt_style_copyright"
+
+                    android:text="@string/copyright"
+
+                    />
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bootstrapBrand="secondary"
+                    style="@style/txt_style_copyright"
+
+                    android:text="All rights reserved."
+
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout></RelativeLayout>
+
+
+
+
+
+
+

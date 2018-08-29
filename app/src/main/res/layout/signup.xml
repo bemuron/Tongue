@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+android:background="@android:color/white"
+        android:gravity="center"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <RelativeLayout
+            android:id="@+id/header"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center" >
+            <include
+                layout="@layout/app_bar_main2"
+                android:layout_width="match_parent"
+                android:id="@+id/app_bar"
+                android:layout_height="wrap_content" />
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+
+            android:id="@+id/content"
+
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/header"
+            android:gravity="center" >
+
+
+
+
+
+
+
+            <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+
+
+                    tools:context="com.agrovc.viola1.afinal.view.SignUp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+
+
+
+
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1.0dip"
+                            app:cardBackgroundColor="@android:color/white"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="8dp"
+                            >
+
+
+                            <com.beardedhen.androidbootstrap.AwesomeTextView
+                                style="@style/txt_style_level1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Email *"
+                                android:textColor="@android:color/black"
+
+                                />
+                        </android.support.v7.widget.CardView>
+
+
+
+                        <com.beardedhen.androidbootstrap.BootstrapEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:bootstrapSize="md"
+                            app:bootstrapBrand="primary"
+                            android:id="@+id/edtEmail"
+                            android:layout_centerHorizontal="true"
+                            style="@style/edt_style"
+
+                            android:focusable="true"
+                            android:textColorHighlight="@android:color/transparent"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+
+                            android:inputType="textEmailAddress"
+                            android:textColorHint="@color/colorWhiteEdt"
+
+                            android:maxLines="1"
+                            app:roundedCorners="true"
+                            android:textSize="10.0dp"
+
+                            />
+
+
+
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1.0dip"
+                            app:cardBackgroundColor="@android:color/white"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="8dp"
+                            >
+
+
+                            <com.beardedhen.androidbootstrap.AwesomeTextView
+                                style="@style/txt_style_level1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Password *"
+                                android:textColor="@android:color/black"
+
+                                />
+                        </android.support.v7.widget.CardView>
+                        <com.beardedhen.androidbootstrap.BootstrapEditText
+
+                            android:id="@+id/edtPassword"
+                            android:textColorHighlight="@android:color/transparent"
+                            android:layout_centerHorizontal="true"
+
+                            android:inputType="textPassword"
+                            android:paddingLeft="6.0dip"
+                            android:textSize="12.0dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:bootstrapSize="md"
+                            app:bootstrapBrand="primary"
+
+                            app:roundedCorners="true"
+                            android:imeActionId="@integer/customImeActionId"
+                            android:focusable="true"
+                            style="@style/edt_style"
+
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+
+                            android:imeActionLabel="@string/action_sign_in_short"
+                            android:imeOptions="actionUnspecified"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            />
+
+
+
+
+
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1.0dip"
+                            app:cardBackgroundColor="@android:color/white"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="8dp"
+                            >
+
+
+                            <com.beardedhen.androidbootstrap.AwesomeTextView
+                                style="@style/txt_style_level1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Confirm Password *"
+                                android:textColor="@android:color/black"
+
+                                />
+                        </android.support.v7.widget.CardView>
+
+                        <com.beardedhen.androidbootstrap.BootstrapEditText
+
+                            android:id="@+id/edtConfirmPassword"
+
+                            android:layout_centerHorizontal="true"
+
+                            android:inputType="textPassword"
+                            android:textColorHighlight="@android:color/transparent"
+                            android:paddingLeft="6.0dip"
+                            android:textSize="12dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:bootstrapSize="md"
+
+                            app:bootstrapBrand="primary"
+                            app:roundedCorners="true"
+                            android:imeActionId="@integer/customImeActionId"
+                            android:focusable="true"
+                            style="@style/edt_style"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+
+                            android:imeActionLabel="@string/action_sign_in_short"
+                            android:imeOptions="actionUnspecified"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            />
+
+
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+                            <android.support.v7.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5.0dip"
+                                app:cardBackgroundColor="@android:color/white"
+                                android:layout_marginLeft="30dp"
+                                app:cardCornerRadius="8dp"
+                                android:layout_marginTop="8.0dip"
+                                >
+
+
+                                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                                        style="@style/txt_style_level1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="Cartegory*"
+                                        android:textColor="@android:color/black"
+
+                                        />
+                                </android.support.v7.widget.CardView>
+                        </LinearLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.0"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@layout/rounded_border_textview" android:paddingLeft="30dp"
+
+                            android:paddingRight="3dp">
+                            <Spinner
+                                android:id="@+id/spinner_category"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:dropDownWidth="wrap_content"
+
+                                android:spinnerMode="dialog"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:entries="@array/role"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:popupBackground="@android:color/white"
+                                android:drawSelectorOnTop = "true"
+                                android:paddingRight="20dp"
+                                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                                android:textSize="12.0sp"
+                                android:typeface="serif"
+                                android:prompt="@string/select_cartegory"
+
+                                />
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent" android:gravity="right"
+
+
+                            android:paddingRight="30dp"
+                            android:paddingTop="20dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content">
+
+                            <com.beardedhen.androidbootstrap.BootstrapButton
+
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/btnSignup"
+                                app:bootstrapBrand="primary"
+                                android:text="@string/Signup"
+                                android:onClick="signUpOnClick"
+                                app:bootstrapSize="md"
+                                app:buttonMode="regular"
+                                app:showOutline="false"
+                                app:roundedCorners="true"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent" android:gravity="right"
+
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:paddingTop="20dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="10dp"
+                            android:paddingBottom="50dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_height="wrap_content">
+                            <com.beardedhen.androidbootstrap.BootstrapProgressBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:animated="true"
+                                app:bootstrapBrand="primary"
+                                app:bootstrapSize="sm"
+                                app:roundedCorners="true"
+                                app:bootstrapProgress="100"
+                                android:visibility="gone"
+                                android:layout_centerInParent="true"
+                                android:id="@+id/progressBar1"
+                                android:layout_below="@id/app_bar"
+                                app:striped="true"
+
+                                />
+
+                            <com.beardedhen.androidbootstrap.AwesomeTextView
+
+                                android:id="@+id/login"
+                                style="@style/txt_style_level1"
+                                app:bootstrapBrand="primary"
+                                android:textSize="12dp"
+                                android:textAlignment="center"
+                                android:onClick="checkOption"
+
+                                android:clickable="true"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+
+                                android:text="Already have an account? Sign in." />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </ScrollView>
+
+            <RelativeLayout
+
+                android:id="@+id/footer"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="center" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:id="@+id/lay2"
+
+                    android:layout_height="wrap_content">
+                    <View
+
+                        android:background="@color/colorWhiteEdt"
+android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="2dp"/>
+
+                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        style="@style/txt_style_copyright"
+
+                        android:clickable="true"
+                        android:text="@string/copyright"
+
+                        />
+
+                    <com.beardedhen.androidbootstrap.AwesomeTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        style="@style/txt_style_copyright"
+
+                        android:clickable="true"
+                        android:text="All rights reserved"
+
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
