@@ -126,7 +126,6 @@
     <string name="your_placeline">Placeline</string>
     <string name="cancel">Cancel</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="name">Name</string>
     <string name="verify">Verify</string>
     <string name="resend_code">Resend Code</string>
     <string name="verification_description">Enter verification code to verify your contact number</string>
@@ -164,6 +163,23 @@
     <string name="roboto_condensed">sans-serif-condensed</string>
     <string name="roboto_thin">sans-serif-thin</string>
     <string name="roboto_medium">sans-serif-medium</string>
+
+    <!-- Registration and login strings -->
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+    <string name="create_account">Create an account</string>
+
+    <!-- End of Registration and login strings -->
 
     <string-array name="gender">
         <item>Male</item>

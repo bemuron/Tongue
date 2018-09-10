@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:name=".view.MyApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".splashed.ActivitiyHome">
+
+        <activity android:name="presentation.ui.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -60,6 +60,7 @@
     <color name="aluminium">#DBEEF4</color>
     <color name="peacockBlue">#1E656D</color>
     <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
 
     <color name="tutorName">#292929</color>
     <color name="attributes">#696969</color>
@@ -69,6 +70,12 @@
     <color name="list_row_hover_start_color">#c3dcec</color>
     <color name="list_row_hover_end_color">#c3dcec</color>
 
+
+    <!--added for registration page-->
+    <color name="bg_register">#674ea7</color>
+    <color name="input_register_bg">#fff</color>
+    <color name="input_register">#000000</color>
+    <color name="input_register_hint">#5e6266</color>
 
     <color name="color_sign_up">#f51f0166</color>
     <color name="color_log_in">#eff10783</color>

@@ -16,8 +16,8 @@
     <dimen name="margin_huge">56dp</dimen>
     <dimen name="margin_max">72dp</dimen>
     <dimen name="bottom_links_margin">22dp</dimen>
-    <!-- Standard Padding Dimensions -->
 
+    <!-- Standard Padding Dimensions -->
     <dimen name="padding_low">4dp</dimen>
     <dimen name="padding_base">8dp</dimen>
     <dimen name="padding_medium">12dp</dimen>
@@ -29,6 +29,7 @@
     <dimen name="padding_max">72dp</dimen>
     <dimen name="text_size">30dp</dimen>
     <dimen name="selected_text_size">35dp</dimen>
+
     <!-- Standard Text Dimensions -->
     <dimen name="text_very_small">10sp</dimen>
     <dimen name="text_small">12sp</dimen>
@@ -80,9 +81,6 @@
     <dimen name="folded_label_padding">22sp</dimen>
     <dimen name="logo_size">64dp</dimen>
     <dimen name="guideline_margin">56dp</dimen>
-
-
-
 
     <dimen name="padding_layout">8dp</dimen>
     <dimen name="home_image">80dp</dimen>

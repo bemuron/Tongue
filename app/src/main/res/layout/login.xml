@@ -1,48 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-
-
-
         xmlns:android="http://schemas.android.com/apk/res/android">
+
         <RelativeLayout
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            >
-
-            <include
-                layout="@layout/app_bar_main"
-                android:layout_width="match_parent"
-                android:id="@+id/app_bar"
-                android:layout_height="wrap_content" />
-
-
-        </RelativeLayout>
-        <RelativeLayout
-
             android:id="@+id/content"
-
-
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_below="@id/header"
-            >
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="8dp"
-
-                app:cardBackgroundColor="@color/secondaryColor"
-
-                >
+            android:layout_below="@id/header">
 
             <ScrollView android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -53,9 +20,7 @@
                     xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-
-                >
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -90,19 +55,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-
                         android:orientation="vertical">
-
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginTop="8.0dip"
-                            app:cardBackgroundColor="@color/secondaryColor"
-                            app:cardCornerRadius="8dp">
-
 
                             <TextView
                                 style="@style/txt_style_level1"
@@ -110,10 +63,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="@string/prompt_email"
-                                android:textColor="@color/black"
-
-                                />
-                        </android.support.v7.widget.CardView>
+                                android:textColor="@color/black" />
 
 
                         <com.beardedhen.androidbootstrap.BootstrapEditText
@@ -133,9 +83,7 @@
                             android:textSize="18sp"
                             app:bootstrapBrand="primary"
                             app:bootstrapSize="md"
-                            app:roundedCorners="true"
-
-                            />
+                            app:roundedCorners="false" />
 
                         <com.beardedhen.androidbootstrap.BootstrapProgressBar
                             android:id="@+id/progressBar1"
@@ -151,20 +99,7 @@
                             app:bootstrapProgress="100"
                             app:bootstrapSize="sm"
                             app:roundedCorners="true"
-
-                            app:striped="true"
-
-                            />
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1.0dip"
-                            android:layout_marginLeft="40dp"
-                            android:layout_marginTop="10dp"
-                            app:cardBackgroundColor="@color/secondaryColor"
-                            app:cardCornerRadius="8dp">
-
+                            app:striped="true" />
 
                             <TextView
                                 style="@style/txt_style_level1"
@@ -172,11 +107,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="@string/prompt_password"
-                                android:textColor="@color/black"
-
-
-                                />
-                        </android.support.v7.widget.CardView>
+                                android:textColor="@color/black" />
 
                         <com.beardedhen.androidbootstrap.BootstrapEditText
                             android:id="@+id/password"
@@ -199,21 +130,7 @@
                             android:textSize="12sp"
                             app:bootstrapBrand="primary"
                             app:bootstrapSize="md"
-                            app:roundedCorners="true" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="40dp"
-                            android:layout_marginLeft="40dp"
-
-                            android:layout_marginRight="40dp"
-                            android:layout_marginStart="40dp"
-                            android:layout_marginTop="10dp"
-
-                            android:gravity="center"
-                            android:paddingTop="10dp">
-
+                            app:roundedCorners="false" />
 
                             <com.beardedhen.androidbootstrap.BootstrapButton
                                 android:id="@+id/email_sign_in_button"
@@ -224,10 +141,8 @@
                                 app:bootstrapBrand="primary"
                                 app:bootstrapSize="md"
                                 app:buttonMode="regular"
-                                app:roundedCorners="true"
+                                app:roundedCorners="false"
                                 app:showOutline="false" />
-
-                        </LinearLayout>
 
                         <LinearLayout
 
@@ -289,8 +204,6 @@
 
 
             </ScrollView>
-
-            </android.support.v7.widget.CardView>
         </RelativeLayout>
 
 

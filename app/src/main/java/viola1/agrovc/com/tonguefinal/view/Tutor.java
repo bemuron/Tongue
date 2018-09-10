@@ -2,14 +2,11 @@ package viola1.agrovc.com.tonguefinal.view;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -31,7 +28,6 @@ import android.widget.Toast;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.beardedhen.androidbootstrap.BootstrapProgressBar;
-import com.beardedhen.androidbootstrap.BootstrapThumbnail;
 import com.valdesekamdem.library.mdtoast.MDToast;
 
 import java.io.IOException;
@@ -49,7 +45,7 @@ import viola1.agrovc.com.tonguefinal.constants.AppNums;
 import viola1.agrovc.com.tonguefinal.constants.EnumAppMessages;
 import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
 import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.RetrofitService;
-import viola1.agrovc.com.tonguefinal.fragments.DatePickerFragment;
+import viola1.agrovc.com.tonguefinal.presentation.ui.fragments.DatePickerFragment;
 import viola1.agrovc.com.tonguefinal.helper.Encryption;
 import viola1.agrovc.com.tonguefinal.helper.GeneralMethods;
 import viola1.agrovc.com.tonguefinal.helper.InputValidator;
@@ -770,12 +766,12 @@ public class Tutor extends AppCompatActivity implements View.OnClickListener,Dat
             // progressDialog.show();
             progressBar.setVisibility(View.VISIBLE);
             setProgressBarIndeterminateVisibility(true);
-        };
+        }
 
         private void stopProgressDialog(){
             progressBar.setVisibility(View.GONE);
             //progressDialog.dismiss();
-        };
+        }
 
     }
 
