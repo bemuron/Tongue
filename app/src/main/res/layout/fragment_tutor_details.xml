@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_base"
+    tools:context=".presentation.ui.fragments.TutorDetailsFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/tutorProfilePicImageView"
+            android:layout_width="103dp"
+            android:layout_height="101dp"
+            android:src="@drawable/profile_image_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tutorNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="John Mukasa"
+            android:textAppearance="@style/Toolbar.TitleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorProfilePicImageView" />
+
+        <RatingBar
+            android:id="@+id/tutorRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:rating="1.2"
+            android:stepSize="1.0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorNameTextView" />
+
+        <TextView
+            android:id="@+id/tutorAgeHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:text="Age:"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tutorAgeTextView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tutorGenderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Male"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tutorRatingBar"
+            app:layout_constraintTop_toBottomOf="@+id/tutorRatingBar" />
+
+        <TextView
+            android:id="@+id/tutorAboutTextView"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="About;"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorAgeHeaderTextView" />
+
+        <TextView
+            android:id="@+id/tutorDescTextView"
+            android:layout_width="368dp"
+            android:layout_height="93dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/padding_base"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorAboutTextView" />
+
+        <TextView
+            android:id="@+id/tutorLanguagesTaughtHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Languages Taught;"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorDescTextView" />
+
+        <TextView
+            android:id="@+id/tutorLanguagesTaughtTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesTaughtHeaderTextView" />
+
+        <TextView
+            android:id="@+id/tutorLanguagesSpokenHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:text="Languages Spoken"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesTaughtTextView" />
+
+        <TextView
+            android:id="@+id/tutorLanguagesSpokenTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesSpokenHeaderTextView" />
+
+        <Button
+            android:id="@+id/tutorRequestButton"
+            android:layout_width="305dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="16dp"
+            android:text="Request"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesSpokenTextView" />
+
+        <TextView
+            android:id="@+id/tutorAgeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="26"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/tutorAgeHeaderTextView"
+            app:layout_constraintTop_toBottomOf="@+id/tutorRatingBar" />
+
+        <TextView
+            android:id="@+id/tutorGenderHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Gender:"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintEnd_toStartOf="@+id/tutorGenderTextView"
+            app:layout_constraintTop_toBottomOf="@+id/tutorRatingBar" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -5,7 +5,12 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import viola1.agrovc.com.tonguefinal.data.network.LanguagesTaught;
 import viola1.agrovc.com.tonguefinal.data.network.Result;
+import viola1.agrovc.com.tonguefinal.data.network.SearchResult;
+import viola1.agrovc.com.tonguefinal.data.network.Tutor;
+import viola1.agrovc.com.tonguefinal.data.network.Tutors;
 import viola1.agrovc.com.tonguefinal.models.Languages;
 
 public interface APIService {
@@ -26,20 +31,36 @@ public interface APIService {
 
     //the login/signin call
     @FormUrlEncoded
-    @POST("public/login")
+    @POST("login")
     Call<Result> userLogin(
             @Field("email") String email,
             @Field("password") String password);
 
     //The register call
     @FormUrlEncoded
-    @POST("public/register")
+    @POST("register")
     Call<Result> createUser(
             @Field("name") String name,
             @Field("date_of_birth") String date_of_birth,
             @Field("gender") String gender,
             @Field("email") String email,
             @Field("password") String password);
+
+    //the search for a language call
+    @GET("language_search/{searchString}")
+    Call<SearchResult> searchForLanguage(@Path("searchString") String searchString);
+
+    //call to get a list of tutors who teach a specific language
+    @GET("tutorList/{language_id}")
+    Call<Tutors> getTutorsForLanguage(@Path("language_id") int language_id);
+
+    //call to get a selected tutor's details
+    @GET("tutorDetails/{tutor_id}")
+    Call<Result> getTutorDetails(@Path("tutor_id") int tutor_id);
+
+    //call to get the languages taught by a selected user
+    @GET("tutorLanguages/{tutor_id}")
+    Call<LanguagesTaught> getLanguagesForTutor(@Path("tutor_id") int tutor_id);
 
     /*
     //The register call

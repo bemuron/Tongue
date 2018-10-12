@@ -29,7 +29,7 @@ import viola1.agrovc.com.tonguefinal.utilities.InjectorUtils;
  */
 public class UserRegistrationIntentService extends IntentService {
     private static final String LOG_TAG = UserRegistrationIntentService.class.getSimpleName();
-    private boolean registerSuccess;
+    public boolean registerSuccess = false;
 
     public UserRegistrationIntentService() {
         super("UserRegistrationIntentService");
@@ -45,22 +45,18 @@ public class UserRegistrationIntentService extends IntentService {
         RegisterUser registerUser = InjectorUtils.provideRegisterUser(this.getApplicationContext());
 
         if (registerBundle != null){
-            Log.d(LOG_TAG, "registration details not empty");
-            String name = registerBundle.getString("name");
-            String dob = registerBundle.getString("dob");
-            String gender = registerBundle.getString("gender");
             String email = registerBundle.getString("email");
             String password = registerBundle.getString("password");
 
             //pass the reg details to the method to be posted to the server: finally
-            registerUser.UserRegister(name, dob, gender, email, password);
-                    /*
-            if (registerUser.UserRegister(name, dob, gender, email, password)){
-                registerSuccess = true;
+            //registerUser.UserRegister(email, password);
+
+            if (registerUser.UserRegister(email, password)){
+                this.registerSuccess = true;
             }
-            */
+
         }else{
-            Log.e(LOG_TAG, "login details empty");
+            Log.e(LOG_TAG, "registration bundle details empty");
         }
 
 

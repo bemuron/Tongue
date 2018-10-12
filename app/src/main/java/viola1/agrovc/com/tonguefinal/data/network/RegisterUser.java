@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.valdesekamdem.library.mdtoast.MDToast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -11,8 +14,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import viola1.agrovc.com.tonguefinal.AppExecutors;
+import viola1.agrovc.com.tonguefinal.app.localserver.request.ReqBeanSignup;
+import viola1.agrovc.com.tonguefinal.app.localserver.request.response.ResBeanSignup;
+import viola1.agrovc.com.tonguefinal.constants.AppNums;
+import viola1.agrovc.com.tonguefinal.constants.EnumAppMessages;
 import viola1.agrovc.com.tonguefinal.data.network.api.APIService;
 import viola1.agrovc.com.tonguefinal.data.network.api.APIUrl;
+import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
+import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.RetrofitService;
+import viola1.agrovc.com.tonguefinal.helper.Encryption;
+import viola1.agrovc.com.tonguefinal.view.Login;
+import viola1.agrovc.com.tonguefinal.view.SignUp;
 
 public class RegisterUser {
     private static final String LOG_TAG = RegisterUser.class.getSimpleName();
@@ -25,7 +37,7 @@ public class RegisterUser {
     private static RegisterUser sInstance;
     private final Context mContext;
 
-    private boolean registerResponse;
+    private static boolean registerResponse = false;
 
     public RegisterUser(Context context, AppExecutors executors) {
         mContext = context;
@@ -49,14 +61,11 @@ public class RegisterUser {
     /**
      * Starts an intent service to register the user
      */
-    public void startRegisterUserService(String name, String date_of_birth, String gender, String email, String password) {
+    public boolean startRegisterUserService(String email, String password) {
 
         Intent intentToPost = new Intent(mContext, UserRegistrationIntentService.class);
 
         Bundle registerBundle = new Bundle();
-        registerBundle.putString("name", name);
-        registerBundle.putString("dob", date_of_birth);
-        registerBundle.putString("gender", gender);
         registerBundle.putString("email", email);
         registerBundle.putString("password", password);
         intentToPost.putExtras(registerBundle);
@@ -64,41 +73,78 @@ public class RegisterUser {
         mContext.startService(intentToPost);
         Log.d(LOG_TAG, "Register user service created");
 
-        userRegistrationIntentService.isRegistrationSuccess();
+        return userRegistrationIntentService.isRegistrationSuccess();
     }
 
-    public void UserRegister(String name, String date_of_birth, String gender, String email, String password) {
+    public boolean UserRegister(String email, String password) {
         Log.d(LOG_TAG, "Register user started");
 
-        //building retrofit object
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIUrl.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        ReqBeanSignup reqBean = new ReqBeanSignup();
 
-        //Defining retrofit com.emtech.retrofitexample.api service
-        APIService service = retrofit.create(APIService.class);
+        reqBean.setEmail(Encryption.encrypt(email));
+        reqBean.setPassword(Encryption.encrypt(password));
+
+        //Defining retrofit api service*/
+        //APIService service = retrofit.create(APIService.class);
+        APIService service = new LocalRetrofitApi().getRetrofitService();
 
         //defining the call
-        Call<Result> call = service.createUser(name, date_of_birth, gender, email, password);
+        Call<Result> call = service.createUser(null, null, null, email,password);
 
         //calling the com.emtech.retrofitexample.api
         call.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
 
-                //Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_LONG).show();
+                    //ResBeanSignup resBean = response.body();
+                    //String response_status = Encryption.decrypt(resBean.getResponse_status());
 
-                //if response body is not null, we have some data
-                //count what we have in the response
-                if (!response.body().getError()) {
-                    Log.d(LOG_TAG, response.body().getMessage());
+                    if (!response.body().getError()) {
+                        //Log.d(LOG_TAG, EnumAppMessages.REGISTER_SUCCESS_TITLE.getValue());
+                        Log.d(LOG_TAG, response.body().getMessage());
 
-                    // If the code reaches this point, we have successfully registered
-                    Log.d(LOG_TAG, "Successful registration");
+                        /*edtEmail.getText().clear();
 
-                    //registerResponse = true;
-                }
+                        edtPassword.getText().clear();
+                        edtPassword.getText().clear();
+
+                        MDToast mdToast = MDToast.makeText(activity, EnumAppMessages.REGISTER_SUCCESS_TITLE.getValue(), Toast.LENGTH_LONG,MDToast.TYPE_SUCCESS);
+
+                        mdToast.show();
+                        startActivity(new Intent(SignUp.this,Login.class));
+                        finish();
+                        generalMethods.showLocationDialog(activity,EnumAppMessages.REGISTER_SUCCESS_TITLE.getValue(),Encryption.decrypt(resBean.getRegistration_status()));*/
+
+
+                    }/*else{
+                        Log.d(LOG_TAG, EnumAppMessages.REGISTER_ERROR_TITLE.getValue());
+                        Log.d(LOG_TAG, Encryption.decrypt(resBean.getError()));
+                       *//* MDToast mdToast = MDToast.makeText(activity, EnumAppMessages.REGISTER_ERROR_TITLE.getValue(), Toast.LENGTH_LONG,MDToast.TYPE_ERROR);
+
+                        mdToast.show();
+                        generalMethods.showLocationDialog(activity,EnumAppMessages.REGISTER_ERROR_TITLE.getValue(),Encryption.decrypt(resBean.getError()));
+*//*
+                       registerResponse = false;
+                    }
+                }else if(response.code() == AppNums.STATUS_COD_FILE_NOT_FOUND){
+                    Log.d(LOG_TAG, EnumAppMessages.REGISTER_ERROR_TITLE.getValue());
+                    Log.d(LOG_TAG, EnumAppMessages.ERROR_RESOURCE_NOT_FOUND.getValue());
+                    *//*MDToast mdToast = MDToast.makeText(activity, EnumAppMessages.REGISTER_ERROR_TITLE.getValue(), Toast.LENGTH_LONG,MDToast.TYPE_ERROR);
+
+                    mdToast.show();
+                    generalMethods.showLocationDialog(activity,EnumAppMessages.REGISTER_ERROR_TITLE.getValue(),EnumAppMessages.ERROR_RESOURCE_NOT_FOUND.getValue());*//*
+
+                    registerResponse = false;
+
+                }else{
+                    Log.d(LOG_TAG, EnumAppMessages.ERROR_INTERNAL_ERROR.getValue());
+                    *//*MDToast mdToast = MDToast.makeText(activity, EnumAppMessages.REGISTER_ERROR_TITLE.getValue(), Toast.LENGTH_LONG,MDToast.TYPE_ERROR);
+
+                    mdToast.show();
+                    generalMethods.showLocationDialog(activity,EnumAppMessages.REGISTER_ERROR_TITLE.getValue(),EnumAppMessages.ERROR_INTERNAL_ERROR.getValue());*//*
+
+                    registerResponse = false;
+                }*/
             }
 
             @Override
@@ -106,9 +152,10 @@ public class RegisterUser {
                 //print out any error we may get
                 //probably server connection
                 Log.e(LOG_TAG, t.getMessage());
+                registerResponse = false;
             }
         });
 
-        //return registerResponse;
+        return true;
     }
 }

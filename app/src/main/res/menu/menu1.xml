@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorAccent"
     >
-
-
-
 
     <item
         android:id="@+id/online_users"
         android:orderInCategory="1"
-        android:background="@color/colorAccent"
         android:title="Admin"
-
-
         />
+
     <item
         android:id="@+id/help"
         android:orderInCategory="1"
-        android:background="@color/colorAccent"
         android:title="Help Center"
 
        />

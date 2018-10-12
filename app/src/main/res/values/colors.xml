@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2a2d2e</color>
-    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimary">#500ea1</color>
+    <color name="colorPrimaryDark">#674ea7</color>
     <color name="colorAccent">@color/bootstrap_brand_primary</color>
+
+    <color name="icon_tint_selected">#fed776</color>
+    <color name="primary">#4CAF50</color>
 
     <color name="secondaryColor">#ffffff</color>
     <color name="app_primary">#909090</color>
@@ -88,6 +91,10 @@
 
     <color name="color_input_hint">#FFF</color>
     <color name="color_text_highlight">#fafafa</color>
+    <color name="row_activated">#e0e0e0</color>
+
+
+    <color name="bg_circle_default">#666666</color>
 
 
 </resources>

@@ -5,13 +5,10 @@ package viola1.agrovc.com.tonguefinal.view;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -57,6 +54,7 @@ import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
 import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.RetrofitService;
 import viola1.agrovc.com.tonguefinal.helper.GeneralMethods;
 import viola1.agrovc.com.tonguefinal.helper.InputValidator;
+import viola1.agrovc.com.tonguefinal.presentation.ui.activities.HomeActivity;
 
 //import com.example.viola1.afinal.activities.UsersListActivity;
 
@@ -65,7 +63,7 @@ import viola1.agrovc.com.tonguefinal.helper.InputValidator;
  */
 public class Login extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-        /**
+    /**
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
@@ -80,7 +78,7 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
 
     private BootstrapEditText mPasswordView;
     //private EditText mEmailView;
-   // private EditText mPasswordView;
+    // private EditText mPasswordView;
     //private ProgressDialog progressDialog;
     private GeneralMethods generalMethods;
     private BootstrapProgressBar progressBar;
@@ -90,10 +88,10 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
-         setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
@@ -127,15 +125,15 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
             }
         });
 
-        }
+    }
     @Override
     public void onBackPressed() {
-       /** DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }**/
+        /** DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         if (drawer.isDrawerOpen(GravityCompat.START)) {
+         drawer.closeDrawer(GravityCompat.START);
+         } else {
+         super.onBackPressed();
+         }**/
     }
 
     @Override
@@ -156,19 +154,19 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
 
         if (id==R.id.help)
         {
-            Intent intent=new Intent(Login.this,MaidActivity.class);
+            Intent intent=new Intent(Login.this,HomeActivity.class);
 
-          // Intent intent=new Intent(Login.this,LoginActivity.class);
+            // Intent intent=new Intent(Login.this,LoginActivity.class);
 
             //Intent intent=new Intent(Login.this,Tutor.class);
             startActivity(intent);
         }
 
         if (id==R.id.online_users){
-     // Intent intent=new Intent(Login.this, EmployerActivity.class);
-           // Intent intent=new Intent(Login.this, StudentHome.class);
+            // Intent intent=new Intent(Login.this, EmployerActivity.class);
+            // Intent intent=new Intent(Login.this, StudentHome.class);
 
-           // startActivity(intent);
+            // startActivity(intent);
 
         }
 
@@ -183,8 +181,8 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
 
 
 
-      /**  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);**/
+        /**  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         drawer.closeDrawer(GravityCompat.START);**/
         return true;
     }
 
@@ -220,11 +218,11 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
                 if(password != null) {
                     if(password.length() > 1) {
 
-                       // mPasswordView.setText(password.trim());
+                        // mPasswordView.setText(password.trim());
 
-                      //  attemptLogin();
+                        //  attemptLogin();
 
-                      //  new GeneralMethods().showToastToUser(Login.this,"Automatic Login");
+                        //  new GeneralMethods().showToastToUser(Login.this,"Automatic Login");
 
                     }
 
@@ -261,7 +259,7 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
             MDToast mdToast = MDToast.makeText(this, "This password is too short",Toast.LENGTH_LONG, MDToast.TYPE_ERROR);
 
             mdToast.show();
-          // mPasswordView.setError(getString(R.string.error_invalid_password));
+            // mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
@@ -288,7 +286,7 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
             MDToast mdToast = MDToast.makeText(this, "This email address is invalid",Toast.LENGTH_LONG, MDToast.TYPE_ERROR);
 
             mdToast.show();
-          //  mEmailView.setError(getString(R.string.error_invalid_email));
+            //  mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         }
@@ -299,8 +297,8 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
             focusView.requestFocus();
         } else {
 
-         //   progressDialog = new GeneralMethods().progressDialog(Login.this, null,EnumAppMessages.DIALOG_LOADING.getValue());
-          //  progressDialog.show();
+            //   progressDialog = new GeneralMethods().progressDialog(Login.this, null,EnumAppMessages.DIALOG_LOADING.getValue());
+            //  progressDialog.show();
 
             progressBar.setVisibility(View.VISIBLE);
             setProgressBarIndeterminateVisibility(true);
@@ -322,13 +320,13 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
         reqBean.setPassword(password);
         reqBean.setType(AppProperties.SERVER_REQUEST_TYPE);
         reqBean.set_token(AppProperties.SERVER_REQUEST_TOKEN);
-        RetrofitService service = new LocalRetrofitApi().getRetrofitService();
+       /* RetrofitService service = new LocalRetrofitApi().getRetrofitService();
 
         Call<ResBeanLogin> call = service.authenticate(reqBean);
         call.enqueue(new Callback<ResBeanLogin>() {
             @Override
             public void onResponse(Call<ResBeanLogin> call, Response<ResBeanLogin> response) {
-              //  progressDialog.dismiss();
+                //  progressDialog.dismiss();
                 progressBar.setVisibility(View.GONE);
 
                 if(response.code() == AppNums.STATUS_COD_SUCCESS){
@@ -347,13 +345,13 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
 
                         editor.apply();
 
-                        startThreadToStoreProfileInformation(resBean);
+                        // startThreadToStoreProfileInformation(resBean);
 
-                        startActivity(new Intent(Login.this, TutorHome.class));
+                        startActivity(new Intent(Login.this, HomeActivity.class));
                         finish();
 
                     }else{
-                      //  Toast.makeText(Login.this,resBean.getError(),Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(Login.this,resBean.getError(),Toast.LENGTH_SHORT).show();
                         MDToast mdToast = MDToast.makeText(Login.this,resBean.getError(),Toast.LENGTH_SHORT, MDToast.TYPE_ERROR);
 
                         mdToast.show();
@@ -372,7 +370,7 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
 
             @Override
             public void onFailure(Call<ResBeanLogin> call, Throwable t) {
-              //  progressDialog.dismiss();
+                //  progressDialog.dismiss();
 
                 progressBar.setVisibility(View.GONE);
 
@@ -382,16 +380,16 @@ public class Login extends AppCompatActivity implements NavigationView.OnNavigat
                     generalMethods.showLocationDialog(Login.this,EnumAppMessages.LOGIN_ERROR_TITLE.getValue(),EnumAppMessages.ERROR_UNKNOWN_ERROR.getValue());
                 }
             }
-        });
+        });*/
     }
-private void saveLoginDetails (String email,String password){
-new PrefManager(this).saveLoginDetails(email,password);
-}
+    private void saveLoginDetails (String email,String password){
+        new PrefManager(this).saveLoginDetails(email,password);
+    }
 
     /*
-    * Start a thread that Saves user profile information to SQlite DB forexample the biodata, the mandatory location and the optional
-    * location , the Payment accounts
-    * */
+     * Start a thread that Saves user profile information to SQlite DB forexample the biodata, the mandatory location and the optional
+     * location , the Payment accounts
+     * */
     private void startThreadToStoreProfileInformation(final ResBeanLogin resBean) {
 
         Thread threadSaveProfileDetails = new Thread(new Runnable() {
@@ -435,7 +433,7 @@ new PrefManager(this).saveLoginDetails(email,password);
 
             dbHandler.saveUserProfileInformation(userBioData,userLocationMandatory,userLocationOptional);
 
-           // dbHandler.saveUserPaymentAccount(userPaymentAccount,email);
+            // dbHandler.saveUserPaymentAccount(userPaymentAccount,email);
 
 
         }catch (Exception e){
@@ -451,7 +449,7 @@ new PrefManager(this).saveLoginDetails(email,password);
         int id = view.getId();
         switch (id){
             case R.id.txt_signup:{
-              //  startActivity(new Intent(Login.this,SignUp.class));
+                //  startActivity(new Intent(Login.this,SignUp.class));
                 startActivity(new Intent(Login.this, SignUp.class));
                 finish();
                 break;
@@ -459,7 +457,7 @@ new PrefManager(this).saveLoginDetails(email,password);
             case R.id.txt_forgot_password:{
                 // startActivity(new Intent(Login.this,Home.class));
 
-             // startActivity(new Intent(Login.this,SplashScreen.class));
+                // startActivity(new Intent(Login.this,SplashScreen.class));
                 finish();
                 break;
             }default:{

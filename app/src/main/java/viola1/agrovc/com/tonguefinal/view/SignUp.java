@@ -49,30 +49,18 @@ import viola1.agrovc.com.tonguefinal.helper.InputValidator;
 
 public class SignUp extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RelativeLayout mainContainer;
-    BootstrapEditText edtFirstname;
-    BootstrapEditText edtLastname;
+
     BootstrapEditText edtEmail;
     BootstrapEditText edtPassword;
     BootstrapEditText edtConfirmPassword;
-    BootstrapEditText edtContact;
-    Spinner spinner_sex;
-    Spinner spinner_user_type;
+
+
     BootstrapButton btnSignup;
     TextView login;
     private View focusView;
     private BootstrapProgressBar progressBar;
 
-    public String[] role = {
-            "",
-            "User",
 
-    };
-    public String[] gender = {
-            "",
-            "Female",
-            "Male",
-
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +77,12 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
         progressBar = (BootstrapProgressBar) findViewById(R.id.progressBar1);
         // toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_navigation_arrow_back));
 
-        toolbar.setTitle("Account Registration");
+        toolbar.setTitle("Sign Up");
 
 
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
 
@@ -135,12 +122,12 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
 
     @Override
     public void onBackPressed() {
-       /** DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }**/
+        /** DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         if (drawer.isDrawerOpen(GravityCompat.START)) {
+         drawer.closeDrawer(GravityCompat.START);
+         } else {
+         super.onBackPressed();
+         }**/
     }
 
     @Override
@@ -160,14 +147,14 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
         //noinspection SimplifiableIfStatement
 
         if (id==R.id.help){
-            Intent intent=new Intent(SignUp.this, HelpCenter.class);
-            startActivity(intent);
+            // Intent intent=new Intent(SignUp.this, HelpCenter.class);
+            //startActivity(intent);
         }
 
         if (id==R.id.online_users){
-            Intent intent=new Intent(SignUp.this,AdminContact.class);
-            //Intent intent=new Intent(SignUp.this, com.example.viola1.bill.sort.farmers.CenterMainActivity.class);
-            startActivity(intent);
+            //Intent intent=new Intent(SignUp.this,AdminContact.class);
+
+            // startActivity(intent);
         }
 
         if (item.getItemId() == android.R.id.home) {
@@ -190,8 +177,8 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
 
 
 
-      /**  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);**/
+        /**  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         drawer.closeDrawer(GravityCompat.START);**/
         return true;
     }
 
@@ -208,66 +195,6 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
         edtPassword = (BootstrapEditText) findViewById(R.id.edtPassword);
 
         edtConfirmPassword = (BootstrapEditText) findViewById(R.id.edtConfirmPassword);
-
-
-
-        spinner_user_type = (Spinner) findViewById(R.id.spinner_category);
-        spinner_user_type.setPrompt("Select Cartegory");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, gender){
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-
-                View v = null;
-
-                if (position == 0) {
-                    TextView tv = new TextView(getContext());
-                    tv.setHeight(0);
-                    tv.setVisibility(View.GONE);
-                    v = tv;
-                }
-                else {
-
-                    v = super.getDropDownView(position, null, parent);
-                }
-
-                parent.setVerticalScrollBarEnabled(false);
-                return v;
-            }
-        };
-        // ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.sex, R.layout.spinner_item);
-
-        ///  ArrayAdapter adapter2 = ArrayAdapter.createFromResource(this, R.array.role, R.layout.spinner_item);
-        //  adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        // spinner_user_type.setAdapter(adapter2);
-
-
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, role){
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-
-                View v = null;
-
-                if (position == 0) {
-                    TextView tv = new TextView(getContext());
-                    tv.setHeight(0);
-                    tv.setVisibility(View.GONE);
-                    v = tv;
-                }
-                else {
-
-                    v = super.getDropDownView(position, null, parent);
-                }
-
-                parent.setVerticalScrollBarEnabled(false);
-                return v;
-            }
-        };
-        adapter2.setDropDownViewResource(R.layout.spinner_dropdown_item);
-        spinner_user_type.setAdapter(adapter2);
-
-
 
         btnSignup = (BootstrapButton) findViewById(R.id.btnSignup);
 
@@ -288,12 +215,11 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
 
             String mPassword = edtPassword.getText().toString();
 
-            String cartegory = spinner_user_type.getSelectedItem().toString();
+
 
             ReqBeanSignup reqBean = new ReqBeanSignup();
 
             reqBean.setEmail(Encryption.encrypt(mEmail));
-            reqBean.setUser_type(Encryption.encrypt(cartegory));
             reqBean.setPassword(Encryption.encrypt(mPassword));
 
             new DataLoaderSignUp(SignUp.this).userSignUp(reqBean);
@@ -312,7 +238,7 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
 
     }
 
-    /* Validates user input data*/
+    /* Validates user input languageSearchList*/
     private boolean isValidUserInput() {
 
         focusView = null;
@@ -336,14 +262,6 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
         }
 
 
-        if(spinner_user_type.getSelectedItem().toString()==""){
-            focusView =spinner_user_type;
-            MDToast mdToast = MDToast.makeText(SignUp.this,"Select cartegory",MDToast.TYPE_ERROR);
-
-            mdToast.show();
-            // edtContact.setError(AppErrors.INVALID_CONTACT);
-            return false;
-        }
 
         if(!password.equals(confirm_password)){
             focusView = edtPassword;
@@ -387,7 +305,7 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
 
     public class DataLoaderSignUp {
         Activity activity;
-        RetrofitService service = new LocalRetrofitApi().getRetrofitService();
+        //RetrofitService service = new LocalRetrofitApi().getRetrofitService();
         // ProgressDialog progressDialog;
 
 
@@ -405,7 +323,7 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
             progressBar.setVisibility(View.VISIBLE);
 
             startProgressDialog();
-            Call<ResBeanSignup> call = service.registerUser(reqBean);
+            /*Call<ResBeanSignup> call = service.registerUser(reqBean);
             call.enqueue(new Callback<ResBeanSignup>() {
                 @Override
                 public void onResponse(Call<ResBeanSignup> call, Response<ResBeanSignup> response) {
@@ -470,7 +388,7 @@ public class SignUp extends AppCompatActivity implements NavigationView.OnNaviga
                         generalMethods.showLocationDialog(activity,EnumAppMessages.REGISTER_ERROR_TITLE.getValue(),EnumAppMessages.ERROR_UNKNOWN_ERROR.getValue());
                     }
                 }
-            });
+            });*/
         }
 
 

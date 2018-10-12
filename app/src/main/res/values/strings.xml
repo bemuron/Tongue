@@ -3,6 +3,8 @@
     <string name="action_stop_sharing">STOP SHARING</string>
     <string name="share_your_location">SHARE LIVE LOCATION</string>
     <string name="action_retry">Retry</string>
+    <string name="action_search">Search</string>
+    <string name="action_tutor_activity">Tutors</string>
     <string name="start_tracking">Resume tracking</string>
     <string name="stop_tracking">Pause tracking</string>
     <string name="start_mock_tracking">Start Mock Tracking</string>
@@ -10,12 +12,16 @@
     <string name="prompt_email">Email...</string>
     <string name="prompt_password">Password...</string>
     <string name="app_name">Tongue</string>
+    <string name="home_instructions">What language would you like to learn?</string>
+    <!-- The hint text that appears in the search box. -->
+    <string name="search_hint">Search Languages</string>
 
     <string name="prompt_signup">Create an account</string>
     <string name="loading">Loading ...</string>
     <string name="description">Tongue is a mobile
         application that ......... For more details contact us on:</string>
     <string name="action_sign_in_short">Sign in</string>
+
     <!-- Strings related to login -->
     <string name="prompt_name">Name</string>
     <string name="select_level">Select Level</string>
@@ -107,19 +113,6 @@
     <string name="notification_share_tracking_link">Share your tracking link with your friends &amp; family.</string>
     <string name="notification_set_destination">Set your destination</string>
 
-    <!-- ETA Marker Strings -->
-    <plurals name="eta_in_minute_text">
-        <item quantity="zero">min</item>
-        <item quantity="one">min</item>
-        <item quantity="other">mins</item>
-    </plurals>
-
-    <plurals name="eta_in_hour_text">
-        <item quantity="zero">hr</item>
-        <item quantity="one">hr</item>
-        <item quantity="other">hrs</item>
-    </plurals>
-
     <!--Toolbar Title-->
     <string name="location_permission_detail">We need your location permission to capture your location and activity through the day, and to let you share your live location with your friends when you are on the way</string>
     <string name="background_tracking_permission_msg">We will enable the background tracking by default. Do you want to enable it?</string>
@@ -148,14 +141,13 @@
         <item name="hybrid">Employer</item>
 
 
-
     </array>
 
 
-    <array name="sex">
+    <!--<array name="sex">
         <item name="male">male</item>
         <item name="female">female</item>
-    </array>
+    </array>-->
 
 
     <string name="roboto_regular">sans-serif</string>
@@ -173,7 +165,7 @@
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="btn_link_to_login">Already registred! Login.</string>
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
@@ -181,13 +173,13 @@
 
     <!-- End of Registration and login strings -->
 
-    <string-array name="gender">
+    <!--<string-array name="gender">
         <item>Male</item>
         <item>Female</item>
-    </string-array>
+    </string-array>-->
 
 
-    <string-array name="level">
+    <!--<string-array name="level">
         <item>Masters</item>
         <item>Degree</item>
         <item>Diploma</item>
@@ -203,14 +195,7 @@
         <item>Tanzania</item>
         <item>Rwanda</item>
         <item>Burundi</item>
-    </string-array>
-
-
-
-
-
-
-
+    </string-array>-->
 
 
     <string name="tel">Call +256-392-001934 </string>
@@ -219,8 +204,12 @@
     <string name="facebook">https://web.facebook.com/billbraintech/</string>
     <string name="twitter">https://twitter.com/billbraintech/</string>
     <string name="email">info@billbraintechnologies.com</string>
-
-
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 
 
 </resources>

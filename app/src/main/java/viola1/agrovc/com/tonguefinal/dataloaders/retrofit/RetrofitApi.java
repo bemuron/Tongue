@@ -36,7 +36,6 @@ public class RetrofitApi {
     }
 
     public RetrofitService getRetrofitService(){
-       return this.getRetrofit1().create(RetrofitService.class);
+        return this.getRetrofit1().create(RetrofitService.class);
     }
 }
-

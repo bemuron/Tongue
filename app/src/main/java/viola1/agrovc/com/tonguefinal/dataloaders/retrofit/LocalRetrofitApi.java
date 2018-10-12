@@ -9,6 +9,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import viola1.agrovc.com.tonguefinal.constants.AppProperties;
+import viola1.agrovc.com.tonguefinal.data.network.api.APIService;
+import viola1.agrovc.com.tonguefinal.data.network.api.APIUrl;
 
 
 public class LocalRetrofitApi {
@@ -28,7 +30,7 @@ public class LocalRetrofitApi {
                 .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(AppProperties.LOCAL_API_BASE_SERVER_URL)
+                .baseUrl(APIUrl.BASE_URL)
                 .build();
     }
 
@@ -36,7 +38,7 @@ public class LocalRetrofitApi {
         return retrofit1;
     }
 
-    public RetrofitService getRetrofitService(){
-        return this.getRetrofit1().create(RetrofitService.class);
+    public APIService getRetrofitService(){
+        return this.getRetrofit1().create(APIService.class);
     }
 }

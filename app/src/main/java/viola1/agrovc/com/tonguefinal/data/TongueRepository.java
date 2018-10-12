@@ -1,6 +1,7 @@
 package viola1.agrovc.com.tonguefinal.data;
 
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 import java.util.List;
@@ -8,11 +9,13 @@ import java.util.List;
 import viola1.agrovc.com.tonguefinal.AppExecutors;
 import viola1.agrovc.com.tonguefinal.data.database.Language;
 import viola1.agrovc.com.tonguefinal.data.database.LanguagesDao;
+import viola1.agrovc.com.tonguefinal.data.database.TongueDatabase;
 import viola1.agrovc.com.tonguefinal.data.database.UsersDao;
 import viola1.agrovc.com.tonguefinal.data.network.FetchLanguages;
 import viola1.agrovc.com.tonguefinal.data.network.LoginUser;
 import viola1.agrovc.com.tonguefinal.data.network.RegisterUser;
 import viola1.agrovc.com.tonguefinal.models.User;
+import viola1.agrovc.com.tonguefinal.utilities.InjectorUtils;
 
 /**
  * the TongueRepository is a singleton.
@@ -20,7 +23,7 @@ import viola1.agrovc.com.tonguefinal.models.User;
  * and {@link }
  */
 
-public class TongueRepository {
+public class TongueRepository{
     private static final String LOG_TAG = TongueRepository.class.getSimpleName();
 
     // For Singleton instantiation
@@ -32,12 +35,12 @@ public class TongueRepository {
     private LoginUser mLoginUser;
     private RegisterUser mRegisterUser;
     private boolean mInitialized = false;
+    private boolean mUserInitialized = false;
     private UsersDao mUsersDao;
     private Cursor mUserDetail;
 
     private TongueRepository(LanguagesDao languagesDao, UsersDao usersDao, FetchLanguages fetchLanguages,
-                             RegisterUser registerUser,
-                             LoginUser loginUser, AppExecutors executors) {
+                             RegisterUser registerUser, LoginUser loginUser, AppExecutors executors) {
         mUsersDao = usersDao;
         mLanguagesDao = languagesDao;
         mFetchLanguages = fetchLanguages;
@@ -45,13 +48,22 @@ public class TongueRepository {
         mLoginUser = loginUser;
         mExecutors = executors;
         LiveData<Language[]> tongueLanguages = mFetchLanguages.getCurrentLanguages();
+        //LiveData<[]> tongueUser = mLoginUser.getCurrentUser();
+
+        /*Log.d(LOG_TAG, tongueUser.getEmail()+" current user ");
+        if (tongueUser.getEmail() == null){
+            Log.d(LOG_TAG, "current user is null ");
+        }*/
+
+        //insert user details to db
+        //insertUser(tongueUser);
 
         /*
         * Why use observeForever()?
 
           observeForever() is very similar to observe, with one major difference, it is always considered
           active. Because of this, it does not take an object with a Lifecycle. Why are you using it here?
-          FixAppRepository is observing FetchCategories; neither of these have an associated UI
+          TongueRepository is observing FetchLanguages; neither of these have an associated UI
           controller lifecycle, rather, they exist for the entire lifecycle of the app. Therefore,
           you can safely use observeForever().
 
@@ -97,6 +109,17 @@ public class TongueRepository {
         mExecutors.diskIO().execute(this::startFetchLanguageService);
     }
 
+    private synchronized void initializeUser() {
+
+        if (mUserInitialized) return;
+        mUserInitialized = true;
+
+        if (isLoginUser()){
+            insertUser(mLoginUser.getCurrentUser());
+        }
+
+    }
+
     /**
      * Database related operations
      **/
@@ -107,7 +130,13 @@ public class TongueRepository {
     }
 
     public Cursor getUser(){
-        mUserDetail = mUsersDao.getUserDetails();
+        initializeUser();
+        //mUserDetail = mUsersDao.getUserDetails();
+        mExecutors.diskIO().execute(() ->{
+            mUserDetail = mUsersDao.getUserDetails();
+
+            Log.d(LOG_TAG, "Getting user details from sqlite db");
+        });
 
         return mUserDetail;
     }
@@ -115,8 +144,11 @@ public class TongueRepository {
     //a wrapper for the insert() method. Must be called on a non UI thread
     //or the app will crash
     public void insertUser (User user){
+        //User tongueUser = mLoginUser.getCurrentUser();
         mExecutors.diskIO().execute(() ->{
             mUsersDao.insertUser(user);
+
+            Log.d(LOG_TAG, user.getEmail()+" user inserted into db");
         });
     }
 
@@ -139,6 +171,13 @@ public class TongueRepository {
     }
     */
 
+    private boolean isLoginUser() {
+        User tongueUser = mLoginUser.getCurrentUser();
+
+        return tongueUser.getEmail() != null;
+
+    }
+
     /**
      * Network related operation
      */
@@ -152,14 +191,14 @@ public class TongueRepository {
     }
 
     //method to call service to login user
-    public void loginFixAppUser(String email, String password){
-        mLoginUser.startLoginUserService(email, password);
+    public void loginTongueUser(String email, String password){
+        mLoginUser.UserLogIn(email, password);
     }
 
     //method to register user in database
     //calls service
-    public void registerFixAppUser(String name, String date_of_birth, String gender, String email, String password){
-        mRegisterUser.startRegisterUserService(name, date_of_birth, gender, email, password);
+    public boolean registerTongueUser(String email, String password){
+        return mRegisterUser.UserRegister(email, password);
     }
 
 }

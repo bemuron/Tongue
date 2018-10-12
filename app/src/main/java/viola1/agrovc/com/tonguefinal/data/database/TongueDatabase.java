@@ -14,7 +14,7 @@ import android.content.Context;
 import viola1.agrovc.com.tonguefinal.models.User;
 
 
-@Database(entities = {User.class,Language.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Language.class}, version = 1, exportSchema = false)
 public abstract class TongueDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "tongue.db";

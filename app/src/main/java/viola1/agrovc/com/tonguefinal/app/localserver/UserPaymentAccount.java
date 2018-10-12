@@ -63,4 +63,3 @@ public class UserPaymentAccount {
         this.bank_branch = bankBranch;
     }
 }
-

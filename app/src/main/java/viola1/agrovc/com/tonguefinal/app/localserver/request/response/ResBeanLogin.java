@@ -3,10 +3,12 @@ package viola1.agrovc.com.tonguefinal.app.localserver.request.response;
 
 import viola1.agrovc.com.tonguefinal.app.localserver.UserLocation;
 import viola1.agrovc.com.tonguefinal.app.localserver.UserPaymentAccount;
+import viola1.agrovc.com.tonguefinal.models.User;
 
 public class ResBeanLogin {
     private String response_status;
     private String error;
+    private User[] user;
 
     private String login_status;
 
@@ -44,6 +46,10 @@ public class ResBeanLogin {
 
     public UserPaymentAccount getPayment_accounts() {
         return payment_accounts;
+    }
+
+    public User[] getTongueUser() {
+        return user;
     }
 }
 

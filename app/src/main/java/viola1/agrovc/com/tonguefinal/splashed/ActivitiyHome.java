@@ -1,15 +1,11 @@
 package viola1.agrovc.com.tonguefinal.splashed;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import viola1.agrovc.com.tonguefinal.R;
-import viola1.agrovc.com.tonguefinal.view.Login;
-import viola1.agrovc.com.tonguefinal.view.StudentLogin;
 
 
 public class ActivitiyHome extends AppCompatActivity {
@@ -20,15 +16,12 @@ public class ActivitiyHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        tutor = (BootstrapButton) findViewById(R.id.tutor);
-        student = (BootstrapButton) findViewById(R.id.student);
-
     }
 
 
 
 
-    public void checkOption(View view){
+    /*public void checkOption(View view){
         int id = view.getId();
         switch (id){
             case R.id.tutor:{
@@ -45,7 +38,7 @@ public class ActivitiyHome extends AppCompatActivity {
                 break;
             }
         }
-    }
+    }*/
 
 
 

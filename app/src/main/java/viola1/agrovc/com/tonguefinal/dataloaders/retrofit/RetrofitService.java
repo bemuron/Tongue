@@ -29,16 +29,22 @@ import viola1.agrovc.com.tonguefinal.app.localserver.request.response.ResBeanUse
 public interface RetrofitService {
     @POST("authenticate")
     Call<ResBeanLogin> authenticate(@Body ReqBeanLogin request);
-     @POST("authenticateStudent")
-     Call<ResBeanLogin> authenticateStudent(@Body ReqBeanLogin request);
-     @POST("registerUser")
+
+    @POST("authenticateStudent")
+    Call<ResBeanLogin> authenticateStudent(@Body ReqBeanLogin request);
+
+    @POST("registerUser")
     Call<ResBeanSignup> registerUser(@Body ReqBeanSignup request);
+
     @POST("registerUserStudent")
     Call<ResBeanSignup> registerUserStudent(@Body ReqBeanSignup request);
+
     @POST("profile-default")
     Call<ResBeanUserProfile> getUserProfileData(@Body ReqBeanUserProfile request);
+
     @POST("updateAppUserBiodata")
     Call<ResBeanGeneral> updateUserProfileBioDataOnServer(@Body ReqBeanUpdateBiodata request);
+
     @POST("updateAppUserLocation")
     Call<ResBeanGeneral> updateUserProfileLocationOnServer(@Body ReqBeanUpDateLocation request);
 

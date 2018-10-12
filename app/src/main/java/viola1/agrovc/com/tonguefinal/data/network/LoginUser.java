@@ -4,21 +4,38 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.valdesekamdem.library.mdtoast.MDToast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import viola1.agrovc.com.tonguefinal.AppExecutors;
+import viola1.agrovc.com.tonguefinal.app.localserver.request.ReqBeanLogin;
+import viola1.agrovc.com.tonguefinal.app.localserver.request.response.ResBeanLogin;
+import viola1.agrovc.com.tonguefinal.constants.AppNums;
+import viola1.agrovc.com.tonguefinal.constants.AppProperties;
+import viola1.agrovc.com.tonguefinal.constants.EnumAppMessages;
+import viola1.agrovc.com.tonguefinal.data.TongueRepository;
 import viola1.agrovc.com.tonguefinal.data.network.api.APIService;
-import viola1.agrovc.com.tonguefinal.data.network.api.APIUrl;
+import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
+import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.RetrofitService;
+import viola1.agrovc.com.tonguefinal.helper.GeneralMethods;
+import viola1.agrovc.com.tonguefinal.helper.SessionManager;
+import viola1.agrovc.com.tonguefinal.models.User;
+import viola1.agrovc.com.tonguefinal.presentation.ui.activities.HomeActivity;
 
 public class LoginUser {
     private static final String LOG_TAG = LoginUser.class.getSimpleName();
 
     private final AppExecutors mExecutors;
     private UserLoginIntentService userLoginIntentService;
+    private GeneralMethods generalMethods;
+    private TongueRepository mRepository;
+    private SessionManager session;
+    // LiveData storing the latest user details
+    private User mTongueUser;
 
     // For Singleton instantiation
     private static final Object LOCK = new Object();
@@ -30,6 +47,11 @@ public class LoginUser {
     public LoginUser(Context context, AppExecutors executors) {
         mContext = context;
         mExecutors = executors;
+
+        mTongueUser = new User();
+
+        // Session manager
+        session = new SessionManager(mContext.getApplicationContext());
     }
 
     /**
@@ -44,6 +66,10 @@ public class LoginUser {
             }
         }
         return sInstance;
+    }
+
+    public User getCurrentUser() {
+        return mTongueUser;
     }
 
     /**
@@ -64,17 +90,17 @@ public class LoginUser {
         //return userLoginIntentService.isLoginSuccess();
     }
 
-    public boolean UserLogIn(String email, String password) {
+    public void UserLogIn(String email, String password) {
         Log.d(LOG_TAG, "User login started");
 
-        //building retrofit object
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(APIUrl.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        generalMethods = new GeneralMethods();
 
-        //Defining retrofit com.emtech.retrofitexample.api service
-        APIService service = retrofit.create(APIService.class);
+        final ReqBeanLogin reqBean = new ReqBeanLogin();
+        reqBean.setEmail(email);
+        reqBean.setPassword(password);
+        reqBean.setType(AppProperties.SERVER_REQUEST_TYPE);
+        reqBean.set_token(AppProperties.SERVER_REQUEST_TOKEN);
+        APIService service = new LocalRetrofitApi().getRetrofitService();
 
         //defining the call
         Call<Result> call = service.userLogin(email, password);
@@ -87,15 +113,10 @@ public class LoginUser {
                 //Toast.makeText(getActivity(), response.body().getMessage(), Toast.LENGTH_LONG).show();
 
                 //if response body is not null, we have some data
-                //count what we have in the response
-                if (!response.body().getError()) {
-                    //Log.d(LOG_TAG, response.body().getMessage());
-                    //response.body().getUser();
+                //successful login
+                if (response.code() == AppNums.STATUS_COD_SUCCESS) {
 
-                    // If the code reaches this point, we have successfully posted the job
-                    Log.d(LOG_TAG, "Successful login");
 
-                    loginResponse = true;
                 }
             }
 
@@ -106,7 +127,10 @@ public class LoginUser {
                 Log.e(LOG_TAG, t.getMessage());
             }
         });
+    }
 
-        return loginResponse;
+    // repository must implement this interface
+    public interface OnCurrentListener {
+        public void jobPostDataCallback(String jobTitle, String jobDesc, int categoryId, String categoryName );
     }
 }

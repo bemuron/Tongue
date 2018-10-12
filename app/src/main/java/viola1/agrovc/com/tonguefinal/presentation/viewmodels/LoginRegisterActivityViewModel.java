@@ -46,15 +46,19 @@ public class LoginRegisterActivityViewModel extends ViewModel {
 
     //call repository method to handle posting data to server
     public void loginUser(String email, String password){
-        mRepository.loginFixAppUser(email, password);
+        mRepository.loginTongueUser(email, password);
     }
 
     //call repository method to handle posting user reg details to server
-    public void registerUser(String name, String date_of_birth, String gender, String email, String password){
-        mRepository.registerFixAppUser(name, date_of_birth, gender, email, password);
+    public boolean registerUser(String email, String password){
+        return mRepository.registerTongueUser(email, password);
     }
 
-    public void insert(User user) { mRepository.insertUser(user); }
+    /*public void insert(User user) { mRepository.insertUser(user); }*/
 
     public void delete() { mRepository.deleteUser();}
+
+    //a wrapper insert() method that calls the Repository's insert() method. In this way,
+    // the implementation of insert() is completely hidden from the UI.
+    public void insertUser(User user) { mRepository.insertUser(user); }
 }

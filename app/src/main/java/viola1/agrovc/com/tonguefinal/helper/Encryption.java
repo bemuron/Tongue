@@ -11,6 +11,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import viola1.agrovc.com.tonguefinal.app.localserver.request.ReqBeanApp;
 import viola1.agrovc.com.tonguefinal.app.localserver.request.response.ResBeanGeneral;
+import viola1.agrovc.com.tonguefinal.data.network.api.APIService;
 import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
 import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.RetrofitService;
 
@@ -60,11 +61,11 @@ public class Encryption {
 
     public static void main(String[] args){
 
-        RetrofitService service = new LocalRetrofitApi().getRetrofitService();
+        APIService service = new LocalRetrofitApi().getRetrofitService();
         ReqBeanApp reqBeanApp = new ReqBeanApp();
         reqBeanApp.setMember_email("tim@timo.net");
 
-        Call<ResBeanGeneral> call = service.testEncryption(reqBeanApp);
+        /*Call<ResBeanGeneral> call = service.testEncryption(reqBeanApp);
         call.enqueue(new Callback<ResBeanGeneral>() {
             @Override
             public void onResponse(Call<ResBeanGeneral> call, Response<ResBeanGeneral> response) {
@@ -77,7 +78,7 @@ public class Encryption {
             public void onFailure(Call<ResBeanGeneral> call, Throwable t) {
 
             }
-        });
+        });*/
     }
 
 

@@ -18,7 +18,7 @@ public final class User {
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_CREATED_ON = "created_on";
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = KEY_UID)
     private int user_id;
 
@@ -41,7 +41,7 @@ public final class User {
     @ColumnInfo(name = KEY_CREATED_ON)
     private String created_on;
 
-    @Ignore
+    /*@Ignore
     public User(String name, String date_of_birth, String gender,
                 String email, String password) {
         this.name = name;
@@ -49,10 +49,9 @@ public final class User {
         this.password = password;
         this.gender = gender;
         this.date_of_birth = date_of_birth;
-        this.created_on = created_on;
-    }
+    }*/
 
-    @Ignore
+    /*@Ignore
     public User(int user_id, String name, String email, String gender,
                 String date_of_birth, String created_on){
         this.user_id = user_id;
@@ -61,9 +60,9 @@ public final class User {
         this.gender = gender;
         this.date_of_birth = date_of_birth;
         this.created_on = created_on;
-    }
+    }*/
 
-    public User(int user_id, String name, String email, String password,
+    /*public User(int user_id, String name, String email, String password,
                 String gender, String date_of_birth, String created_on) {
         this.user_id = user_id;
         this.name = name;
@@ -71,6 +70,34 @@ public final class User {
         this.password = password;
         this.gender = gender;
         this.date_of_birth = date_of_birth;
+        this.created_on = created_on;
+    }*/
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setDate_of_birth(String date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setCreated_on(String created_on) {
         this.created_on = created_on;
     }
 

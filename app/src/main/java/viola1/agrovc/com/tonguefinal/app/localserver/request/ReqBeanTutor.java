@@ -20,7 +20,7 @@ public class ReqBeanTutor {
     private String Country;
     private String Date;
 
-private ImageView profile_pic;
+    private ImageView profile_pic;
 
     private String level;
     private String NIN;

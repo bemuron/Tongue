@@ -2,7 +2,7 @@ package viola1.agrovc.com.tonguefinal.constants;
 
 /**
  * Created by VIOLA1 on 12-Oct-17.
-*/
+ */
 
 public class AppProperties {
     public static final String SERVER_REQUEST_TYPE = "api";
@@ -13,6 +13,8 @@ public class AppProperties {
 
     //public static String LOCAL_API_BASE_SERVER_URL = "http://10.0.2.2:8000//api/";
     public static String LOCAL_API_BASE_SERVER_URL = "http://apps.incubation.billbrain.tech/ts/Tongue/public//api/";
+
+    public static String TONGUE_LANGUAGE_SEARCH = "http://apps.incubation.billbrain.tech/ts/Tongue/app/other/tongue_language_search.php";
 
 
     public static String NewPassword="http://agro.billbrain.tech/other/UpdatePassword.php";
@@ -72,7 +74,7 @@ public class AppProperties {
     public static final String ADMINSUPPLIERPAYMENTS_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/supplierpaymentsrecieved.php?page=";
     public static final String ADMINFARMERPAYMENTS_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/FarmerPayments.php?page=";
     public static final String ADMINCENTERPAYMENTS_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/CenterPayments.php?page=";
-  //  public static final String ADMINSUPPLIERPAYMENTS_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/supplierpaymentsrecieved.php?page=";
+    //  public static final String ADMINSUPPLIERPAYMENTS_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/supplierpaymentsrecieved.php?page=";
     public static final String ADMINCENTERPAYMENTSRECEIVED_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/centerpaymentsreceived.php?page=";
     public static final String ADMINCONSUMERPAYMENTSMADE_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/ConsumerPayments.php?page=";
     public static final String ADMINFARMERPAYMENTSRECEIVED_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminPayments/farmerpaymentsrecieved.php?page=";
@@ -140,7 +142,7 @@ public class AppProperties {
     public static final String ADMIN_SUPPLIER_DATA_URL = "http://agro.billbrain.tech/other/paginate/adminsupplier_feed.php?page=";
     public static final String FARMER_DATA_URL = "http://agro.billbrain.tech/other/paginate/farmer_feed.php?page=";
     public static final String CENTER_DATA_URL = "http://agro.billbrain.tech/other/paginate/center_feed.php?page=";
-   public static final String SUPPLIER_DATA_URL = "http://agro.billbrain.tech/other/paginate/supplier_feed.php?page=";
+    public static final String SUPPLIER_DATA_URL = "http://agro.billbrain.tech/other/paginate/supplier_feed.php?page=";
     public static final String CONSUMER_DATA_URL = "http://agro.billbrain.tech/other/paginate/consumer_feed.php?page=";
 
 
@@ -151,7 +153,7 @@ public class AppProperties {
     public static final String FARMERPAYMENT_DATA_URL = "http://agro.billbrain.tech/other/paginate/farmerpayment_feed.php";
     public static final String CONSUMERPAYMENT_DATA_URL = "http://agro.billbrain.tech/other/paginate/consumerpayment_feed.php";
 
-   // public static final String SUPPLIERPRODUCE_DATA_URL = "http://10.0.2.2/Cropheno/app/other/paginate/supplierproduce_feed.php";
+    // public static final String SUPPLIERPRODUCE_DATA_URL = "http://10.0.2.2/Cropheno/app/other/paginate/supplierproduce_feed.php";
 
 
 
@@ -175,10 +177,10 @@ public class AppProperties {
     public static String  TAG_BATCHNO= "http://agro.billbrain.tech/other/graph/graphone.php";
 
     public static String TAG_JSON_ARRAY= "http://agro.billbrain.tech/other/graph/graphone.php";
-   // public static String SingleCenterProductRecord= "http://agro.billbrain.tech/other/FilterCenterProduct.php";
-  public static final String USER_DATA_URL = "http://agro.billbrain.tech/other/paginate/user_feed.php?page=";
-  public static final String SINGLEUSER_DATA_URL = "http://agro.billbrain.tech/other/user/FilterUserData.php";
-  public static String UPDATE_USER="http://agro.billbrain.tech/other/UpdateUser.php";
+    // public static String SingleCenterProductRecord= "http://agro.billbrain.tech/other/FilterCenterProduct.php";
+    public static final String USER_DATA_URL = "http://agro.billbrain.tech/other/paginate/user_feed.php?page=";
+    public static final String SINGLEUSER_DATA_URL = "http://agro.billbrain.tech/other/user/FilterUserData.php";
+    public static String UPDATE_USER="http://agro.billbrain.tech/other/UpdateUser.php";
 
 
 
@@ -203,7 +205,7 @@ public class AppProperties {
 
 
 
-//un implemented
+    //un implemented
     public static final String CENTERPAYMENT_DATA_URL = "http://agro.billbrain.tech/other/paginate/centerpayment_feed.php";
     public static final String CENTERPAYMENT_DATA_URL_AMOUNTPAID = "http://agro.billbrain.tech/other/paginate/centerpayments/amountpaid.php";
     public static final String CENTERPAYMENT_DATA_URL_PAYMENT_MODE = "http://agro.billbrain.tech/other/paginate/centerpayments/paymentmode.php";
@@ -306,9 +308,9 @@ public class AppProperties {
     public static String CENTER_AVAILABLE_PRODUCTS = " http://agro.billbrain.tech/other/FilterCenterAvailableProducts.php";
 
 
-   // public static String FARMER_AVAILABLE_PRODUCTS_LIST = "http://10.0.2.2/Cropheno/app/other/paginate/farmeravailableproduce.php";
-   // public static String SUPPLIER_AVAILABLE_PRODUCTS_LIST = "http://10.0.2.2/Cropheno/app/other/paginate/supplieravailableproduce.php";
-   // public static String CENTER_AVAILABLE_PRODUCTS_LIST = "http://10.0.2.2/Cropheno/app/other/paginate/centeravailableproduce.php";
+    // public static String FARMER_AVAILABLE_PRODUCTS_LIST = "http://10.0.2.2/Cropheno/app/other/paginate/farmeravailableproduce.php";
+    // public static String SUPPLIER_AVAILABLE_PRODUCTS_LIST = "http://10.0.2.2/Cropheno/app/other/paginate/supplieravailableproduce.php";
+    // public static String CENTER_AVAILABLE_PRODUCTS_LIST = "http://10.0.2.2/Cropheno/app/other/paginate/centeravailableproduce.php";
 
 
     public static String FARMER_AVAILABLE_PRODUCTS_LIST = "http://agro.billbrain.tech/other/AllFarmerAvailableProducts.php";
@@ -341,6 +343,12 @@ public class AppProperties {
 
     public static final String SUPPLIER_AVAILABLEBY_PRODUCTNAME_DATA_URL = "http://agro.billbrain.tech/other/paginate/supplierpaymentsrecieved.php";
     public static final String SUPPLIERAVAILABLEBYUNITPRICE_DATA_URL = "http://agro.billbrain.tech/other/paginate/centerpaymentsrecieved.php";
+
+
+
+
+
+
 
 
 

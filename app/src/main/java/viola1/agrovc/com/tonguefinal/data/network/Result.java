@@ -14,10 +14,14 @@ public class Result {
     @SerializedName("user")
     private User user;
 
-    public Result(Boolean error, String message, User user) {
+    @SerializedName("tutorDetails")
+    private Tutor tutorDetails;
+
+    public Result(Boolean error, String message, User user, Tutor tutorDetails) {
         this.error = error;
         this.message = message;
         this.user = user;
+        this.tutorDetails = tutorDetails;
     }
 
 
@@ -33,4 +37,7 @@ public class Result {
         return user;
     }
 
+    public Tutor getTutorDetails() {
+        return tutorDetails;
+    }
 }

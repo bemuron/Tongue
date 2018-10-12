@@ -50,9 +50,9 @@ public class UserLoginIntentService extends IntentService {
             String password = loginBundle.getString("password");
 
             //pass the login details to the method to be posted to the server: finally
-            if (loginUser.UserLogIn(email, password)){
+            loginUser.UserLogIn(email, password);
                // this.loginSuccess = true;
-            }
+
         }else{
             Log.e(LOG_TAG, "login details empty");
             //this.loginSuccess = false;
