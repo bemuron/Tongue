@@ -10,14 +10,18 @@ import android.util.Log;
 import android.widget.Toast;
 
 import viola1.agrovc.com.tonguefinal.R;
+import viola1.agrovc.com.tonguefinal.helper.SessionManager;
+import viola1.agrovc.com.tonguefinal.presentation.ui.fragments.ScheduleMeetingFragment;
 import viola1.agrovc.com.tonguefinal.presentation.ui.fragments.TutorDetailsFragment;
 import viola1.agrovc.com.tonguefinal.presentation.ui.fragments.TutorListFragment;
 
 public class TutorActivity extends AppCompatActivity
-        implements TutorListFragment.OnTutorSelectedListener, TutorDetailsFragment.OnTutorRequestedListener {
+        implements TutorListFragment.OnTutorSelectedListener, TutorDetailsFragment.OnTutorRequestedListener,
+        ScheduleMeetingFragment.OnFragmentInteractionListener{
     private static final String TAG = TutorActivity.class.getSimpleName();
     private static final String TUTOR_LIST_FRAGMENT_TAG = "tutor_list_fragment";
     public static TutorActivity instance;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,13 @@ public class TutorActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setupActionBar();
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
 
         instance = this;
 
@@ -44,6 +55,8 @@ public class TutorActivity extends AppCompatActivity
         TutorListFragment tutorListFragment = findOrCreateViewFragment();
         setupViewFragment(tutorListFragment);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }//closing oncreate
 
     private void setupActionBar() {
@@ -59,7 +72,7 @@ public class TutorActivity extends AppCompatActivity
 
         // Add the fragment to the 'fragment_container' FrameLayout
         getSupportFragmentManager().beginTransaction()
-                .addToBackStack(TUTOR_LIST_FRAGMENT_TAG )
+                //.addToBackStack(TUTOR_LIST_FRAGMENT_TAG )
                 .replace(R.id.tutor_fragment_container, tutorListFragment)
                 .commit();
     }
@@ -75,7 +88,7 @@ public class TutorActivity extends AppCompatActivity
                 .findFragmentById(R.id.tutor_fragment_container);
 
         if (tutorListFragment == null) {
-            tutorListFragment = tutorListFragment.newInstance(language_id, language_name);
+            tutorListFragment = TutorListFragment.newInstance(language_id, language_name);
         }
         return tutorListFragment;
     }
@@ -84,16 +97,20 @@ public class TutorActivity extends AppCompatActivity
     //gets the tutor Id of the selected tutor
     //starts the tutor details fragment
     @Override
-    public void tutorSelectionCallback(int tutorId){
+    public void tutorSelectionCallback(int tutorId, String tutorName, float tutorRating, String languageName){
         TutorDetailsFragment tutorDetailsFragment = new TutorDetailsFragment();
         Bundle args = new Bundle();
         args.putInt("tutor_id", tutorId);
+        args.putString("tutor_name", tutorName);
+        args.putFloat("tutor_rating", tutorRating);
+        args.putString("language_name", languageName);
         Log.d(TAG,"Tutor ID from list = "+tutorId);
 
         tutorDetailsFragment.setArguments(args);
 
         // Add the fragment to the 'fragment_container' FrameLayout
         getSupportFragmentManager().beginTransaction()
+                //.addToBackStack(null)
                 .replace(R.id.tutor_fragment_container, tutorDetailsFragment)
                 .commit();
     }
@@ -101,5 +118,20 @@ public class TutorActivity extends AppCompatActivity
     @Override
     public void tutorRequestCallback(int tutorId){
         Toast.makeText(this, "Tutor request received", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFragmentInteraction(String meetingDate, String meetingTime){
+        Log.d(TAG, "meeting time: "+meetingTime +"meeting date: "+meetingDate);
+    }
+
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     * */
+    private void logoutUser() {
+        session.setLogin(false);
+        session.logoutUser();
+        //mViewModel.delete();
     }
 }

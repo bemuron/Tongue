@@ -15,6 +15,7 @@ import viola1.agrovc.com.tonguefinal.AppExecutors;
 import viola1.agrovc.com.tonguefinal.data.database.Language;
 import viola1.agrovc.com.tonguefinal.data.network.api.APIService;
 import viola1.agrovc.com.tonguefinal.data.network.api.APIUrl;
+import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
 import viola1.agrovc.com.tonguefinal.models.Languages;
 
 public class FetchLanguages {
@@ -59,20 +60,14 @@ public class FetchLanguages {
     public void startFetchLanguageService() {
         Intent intentToFetch = new Intent(mContext, LanguageSyncIntentService.class);
         mContext.startService(intentToFetch);
-        Log.d(LOG_TAG, "Fetch categories service created");
+        Log.d(LOG_TAG, "Fetch languages service created");
     }
 
     public void GetAppLanguages() {
         Log.d(LOG_TAG, "Fetch languages started");
 
-            //building retrofit object
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(APIUrl.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
             //Defining retrofit api service
-            APIService service = retrofit.create(APIService.class);
+            APIService service = new LocalRetrofitApi().getRetrofitService();
 
         //defining the call
         Call<Languages> call = service.getLanguages();

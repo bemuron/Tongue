@@ -4,7 +4,7 @@
     android:background="@color/bg_register"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
@@ -27,7 +27,7 @@
             android:layout_margin="10dp"
             android:src="@mipmap/ic_launcher_foreground"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="90dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -43,9 +43,52 @@
             android:textSize="@dimen/text_large"
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/padding_high"
-            android:paddingBottom="@dimen/padding_huge"
+            android:paddingBottom="@dimen/padding_medium"
             android:text="@string/create_account"
             android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/edit_text_register_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
+            android:hint="@string/hint_name"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:paddingTop="@dimen/padding_high"
+            android:singleLine="true"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+        <EditText
+            android:id="@+id/edit_text_register_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
+            android:hint="@string/hint_date"
+            android:padding="10dp"
+            android:paddingTop="@dimen/padding_high"
+            android:singleLine="true"
+            android:textColor="@color/input_register"
+            android:textColorHint="@color/input_register_hint" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_medium"
+            android:text="Gender"
+            android:textColor="@color/white" />
+
+        <RadioGroup
+            android:id="@+id/genderRadioGroup"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/input_register_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </RadioGroup>
 
         <EditText
             android:id="@+id/edit_text_register_email"

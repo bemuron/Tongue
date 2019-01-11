@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:padding="5dp"
+        app:cardCornerRadius="6dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/gridItemContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/language_pic"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/profile_image_size"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"/>
+            <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/language_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_xhigh"
+                android:paddingLeft="@dimen/padding_mid_base"
+                android:paddingRight="@dimen/padding_mid_base"
+                android:paddingTop="@dimen/padding_mid_base"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_large"
+                android:text="Greetings"/>
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

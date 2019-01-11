@@ -11,7 +11,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import viola1.agrovc.com.tonguefinal.constants.AppPrefs;
-import viola1.agrovc.com.tonguefinal.view.Login;
 
 
 public class GeneralMethods {
@@ -58,7 +57,7 @@ public class GeneralMethods {
     }
 
 
-    public String getMemberEmail(Activity activity) {
+    /*public String getMemberEmail(Activity activity) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(AppPrefs.APP_PREFS, Context.MODE_PRIVATE);
         String email = sharedPreferences.getString(AppPrefs.PREF_EMAIL,"");
         if(email.length()==0){
@@ -66,7 +65,7 @@ public class GeneralMethods {
             activity.finish();
         }
         return email;
-    }
+    }*/
 
     public String getMemberid(Activity activity) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(AppPrefs.APP_PREFS, Context.MODE_PRIVATE);
@@ -85,7 +84,7 @@ public class GeneralMethods {
         e.printStackTrace();
     }
 
-    public String getMemberUserTpe(Activity activity) {
+    /*public String getMemberUserTpe(Activity activity) {
         SharedPreferences sharedPreferences = activity.getSharedPreferences(AppPrefs.APP_PREFS, Context.MODE_PRIVATE);
         String userType = sharedPreferences.getString(AppPrefs.PREF_USER_TYPE,"");
         if(userType.length()==0){
@@ -93,7 +92,7 @@ public class GeneralMethods {
             activity.finish();
         }
         return userType;
-    }
+    }*/
 
 
     }

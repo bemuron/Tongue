@@ -12,15 +12,18 @@
     <string name="prompt_email">Email...</string>
     <string name="prompt_password">Password...</string>
     <string name="app_name">Tongue</string>
+    <string name="search_activity">Search Languages</string>
     <string name="home_instructions">What language would you like to learn?</string>
     <!-- The hint text that appears in the search box. -->
     <string name="search_hint">Search Languages</string>
+    <string name="payment_summary_title">Payment summary</string>
 
     <string name="prompt_signup">Create an account</string>
     <string name="loading">Loading ...</string>
     <string name="description">Tongue is a mobile
         application that ......... For more details contact us on:</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="choose_email_client">Choose email client</string>
 
     <!-- Strings related to login -->
     <string name="prompt_name">Name</string>
@@ -44,6 +47,16 @@
     <string name="about_twitter">Follow us on Twitter</string>
     <string name="about_github">Fork us on GitHub</string>
     <string name="about_website">Visit our website</string>
+    <string name="about_tongue_text">Tongue is a mobile application intended to connect language teachers with those who
+seek to learn a new language. The user is be able to view the profiles of those who know the language he / She seeks to learn and send
+them a request.
+        \n\n
+        Tongue as a platform for learning languages intends to provide customized solutions to
+the problem of language barrier, meeting the needs of those who intend to learn a new
+language in depth and those who seek to learn only the basics like greeting, asking a
+few questions as may be necessary for their project.
+    </string>
+    <string name="empty_view">No data received</string>
 
     <string name="exit">exit</string>
     <string name="number_picker_formatter">%02d</string>
@@ -136,18 +149,14 @@
     <string name="Signup">Sign Up</string>
 
     <array name="role">
-
         <item name="default">Maid</item>
         <item name="hybrid">Employer</item>
-
-
     </array>
 
-
-    <!--<array name="sex">
+    <string-array name="gender">
         <item name="male">male</item>
         <item name="female">female</item>
-    </array>-->
+    </string-array>
 
 
     <string name="roboto_regular">sans-serif</string>
@@ -156,12 +165,26 @@
     <string name="roboto_thin">sans-serif-thin</string>
     <string name="roboto_medium">sans-serif-medium</string>
 
+    <!--fcm-->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">Global</string>
+    <string name="msg_subscribe_failed">Failed to subscribe to global topic</string>
+    <string name="msg_subscribed">Subscribed to global topic</string>
+    <string name="fcm_message">FCM Message</string>
+
     <!-- Registration and login strings -->
 
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="hint_name">Fullname</string>
+    <string name="hint_phone_number">e.g 256703667894</string>
+    <string name="hint_about_user">Briefly write about you</string>
+    <string name="hint_date">date of birth e.g 11/09/89</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
     <string name="btn_link_to_register">Not a member? Sign up now.</string>
@@ -173,29 +196,17 @@
 
     <!-- End of Registration and login strings -->
 
-    <!--<string-array name="gender">
-        <item>Male</item>
-        <item>Female</item>
-    </string-array>-->
-
-
-    <!--<string-array name="level">
-        <item>Masters</item>
-        <item>Degree</item>
-        <item>Diploma</item>
-        <item>Certificate</item>
-        <item>A level</item>
-        <item>O level</item>
-        <item>Primary</item>
-        <item>None</item>
-    </string-array>
-    <string-array name="country_names">
-        <item>Uganda</item>
-        <item>Kenya</item>
-        <item>Tanzania</item>
-        <item>Rwanda</item>
-        <item>Burundi</item>
-    </string-array>-->
+    <!--navigation drawer strings-->
+    <string name="pending_requests">Pending Requests</string>
+    <string name="confirmed_requests">Confirmed Requests</string>
+    <string name="for_tutors">For Tutors</string>
+    <string name="for_users">For Users</string>
+    <string name="user_profile">Profile</string>
+    <string name="user_logout">Logout</string>
+    <string name="user_feedback">Feedback</string>
+    <string name="user_share">Share</string>
+    <string name="about_tongue">About Tongue</string>
+    <string name="general_users">General</string>
 
 
     <string name="tel">Call +256-392-001934 </string>
@@ -207,9 +218,29 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Tongue</string>
+    <string name="nav_header_subtitle">Different not indifferent</string>
     <string name="nav_header_desc">Navigation header</string>
+
+    <string name="set_meeting_schedule">Set meeting schedule</string>
+    <string name="btn_meeting_time">Set Time:</string>
+    <string name="btn_meeting_date">Set Date:</string>
+    <string name="tv_meeting_location">Location:</string>
+    <string name="meeting_location_hint">Edit Location</string>
+    <string name="alert_dialog_ok">OK</string>
+    <string name="title_activity_tutorship_requests">TutorshipRequests</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_user_profile">User Profile</string>
+    <string name="title_activity_edit_user_profile">Edit Profile</string>
+    <string name="title_activity_become_tutor">Become A Tutor</string>
+    <string name="start_session">Start your session</string>
+    <string name="start_session_button">Start Session</string>
+    <string name="session_in_progress">Session in progress</string>
+    <string name="pause_session">Pause</string>
+    <string name="rate_student">Rate your student</string>
+    <string name="rate_tutor_instruction">Rate your tutor</string>
 
 
 </resources>

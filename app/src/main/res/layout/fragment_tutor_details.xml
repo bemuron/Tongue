@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/tutorProfilePicImageView"
             android:layout_width="103dp"
             android:layout_height="101dp"
@@ -25,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="John Mukasa"
             android:textAppearance="@style/Toolbar.TitleText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +88,6 @@
             android:layout_marginTop="8dp"
             android:gravity="center_horizontal"
             android:padding="@dimen/padding_base"
-            android:text="TextView"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -118,7 +116,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesTaughtHeaderTextView" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/tutorLanguagesSpokenHeaderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -139,7 +137,7 @@
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesSpokenHeaderTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesSpokenHeaderTextView" />-->
 
         <Button
             android:id="@+id/tutorRequestButton"
@@ -147,9 +145,10 @@
             android:layout_height="59dp"
             android:layout_marginTop="16dp"
             android:text="Request"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesSpokenTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/tutorLanguagesTaughtTextView" />
 
         <TextView
             android:id="@+id/tutorAgeTextView"
@@ -158,7 +157,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="26"
             android:textColor="@color/black"
             app:layout_constraintStart_toEndOf="@+id/tutorAgeHeaderTextView"
             app:layout_constraintTop_toBottomOf="@+id/tutorRatingBar" />
@@ -169,10 +167,9 @@
             android:layout_height="19dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
             android:text="Gender:"
             android:textAppearance="@style/Toolbar.SubTitleText"
-            app:layout_constraintEnd_toStartOf="@+id/tutorGenderTextView"
-            app:layout_constraintTop_toBottomOf="@+id/tutorRatingBar" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/tutorGenderTextView"
+            app:layout_constraintEnd_toStartOf="@+id/tutorGenderTextView" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

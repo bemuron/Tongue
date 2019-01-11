@@ -545,6 +545,7 @@ android:visibility="gone"
             android:layout_gravity="bottom"
             android:background="@color/stop"
             android:layout_height="wrap_content">
+
             <View
 
                 android:background="@color/colorPrimary"

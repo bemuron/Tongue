@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,9 +40,12 @@ public class TutorListFragment extends Fragment
         implements TutorListAdapter.TutorListAdapterListener{
     private static final String TAG = TutorListFragment.class.getSimpleName();
     private OnTutorSelectedListener tutorSelectedListener;
+    private TextView emptyView;
     private RecyclerView recyclerView;
     private TutorListAdapter tutorListAdapter;
     private List<Tutor> tutorList = new ArrayList<>();
+    private String languageName;
+    private Tutor tutor;
 
     public TutorListFragment(){
 
@@ -70,21 +77,29 @@ public class TutorListFragment extends Fragment
         //setting the title of the fragment
         getActivity().setTitle(getArguments().getString("language_name")+" tutors");
 
+        //get the name of the language to be passed on to the subsquent fragments
+        languageName = getArguments().getString("language_name");
+
         //initialize the view widgets
         getAllWidgets(view);
 
         //set up the list adapter
         setupListAdapter();
 
-        //retrofit call to get tutor list for specific language
-        getTutors(getArguments().getInt("language_id"));
+        //first check if we have an internet connection
+        if (isNetworkAvailable()) {
+            //retrofit call to get tutor list for specific language
+            getTutors(getArguments().getInt("language_id"));
+        }else {
+            Toast.makeText(getActivity(), "No Internet Connection", Toast.LENGTH_LONG).show();
+        }
 
         return view;
     }
 
     // Container Activity must implement this interface
     public interface OnTutorSelectedListener {
-        public void tutorSelectionCallback(int tutorId);
+        public void tutorSelectionCallback(int tutorId, String tutorName, float tutorRating, String languageName);
     }
 
     @Override
@@ -103,6 +118,7 @@ public class TutorListFragment extends Fragment
 
     public void getAllWidgets(View view) {
         recyclerView = view.findViewById(R.id.tutorListRecyclerView);
+        emptyView = view.findViewById(R.id.empty_tutor_list_view);
     }
 
     private void setupListAdapter() {
@@ -121,7 +137,7 @@ public class TutorListFragment extends Fragment
     public void onTutorRowClicked(int position){
         Tutor tutor = tutorList.get(position);
         Log.d(TAG,"Tutor ID from List to details = "+ tutor.getUser_id());
-        tutorSelectedListener.tutorSelectionCallback(tutor.getUser_id());
+        tutorSelectedListener.tutorSelectionCallback(tutor.getUser_id(), tutor.getName(), tutor.getTutorRating(), languageName);
     }
 
     //retrofit call to get the list of tutors
@@ -155,11 +171,19 @@ public class TutorListFragment extends Fragment
 
                         for (int i = 0; i < response.body().getTutorList().size(); i++) {
 
-                            Tutor tutor = new Tutor();
+                            tutor = new Tutor();
                             tutor.setUser_id(response.body().getTutorList().get(i).getUser_id());
                             tutor.setName(response.body().getTutorList().get(i).getName());
                             tutor.setDescription(response.body().getTutorList().get(i).getDescription());
                             tutor.setProfile_pic(response.body().getTutorList().get(i).getProfile_pic());
+
+                            try {
+                                //get the tutor rating
+                                getTutorRating(tutor.getUser_id());
+                            }catch (Exception e){
+                                e.printStackTrace();
+                                Log.e(TAG, e.getMessage());
+                            }
 
                             tutor.setColor(getRandomMaterialColor("400"));
 
@@ -168,6 +192,14 @@ public class TutorListFragment extends Fragment
                         }
 
                         tutorListAdapter.notifyDataSetChanged();
+
+                        if (tutorList.isEmpty()){
+                            recyclerView.setVisibility(View.GONE);
+                            emptyView.setVisibility(View.VISIBLE);
+                        }else{
+                            recyclerView.setVisibility(View.VISIBLE);
+                            emptyView.setVisibility(View.GONE);
+                        }
 
                     }else if (response.body().getTutorList().size() == 0){
 
@@ -219,6 +251,46 @@ public class TutorListFragment extends Fragment
             colors.recycle();
         }
         return returnColor;
+    }
+
+    //method to check for internet connection
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+    }
+
+    //retrofit call to get the tutor rating
+    private void getTutorRating(int tutor_id){
+
+        APIService service = new LocalRetrofitApi().getRetrofitService();
+
+        //defining the call
+        Call<Tutor> call = service.getTutorRating(tutor_id);
+
+        //calling the com.emtech.retrofitexample.api
+        call.enqueue(new Callback<Tutor>() {
+            @Override
+            public void onResponse(Call<Tutor> call, Response<Tutor> response) {
+                if(response.code() == AppNums.STATUS_COD_SUCCESS) {
+
+                    tutor.setTutorRating(response.body().getTutorRating());
+
+                    Log.d(TAG,"Tutor rating = "+ response.body().getTutorRating());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Tutor> call, Throwable t) {
+
+                //Toast.makeText(getActivity(), "Could not get tutor rating.", Toast.LENGTH_SHORT).show();
+                //print out any error we may get
+                //probably server connection
+                Log.e(TAG, t.getMessage());
+            }
+        });
     }
 
 }

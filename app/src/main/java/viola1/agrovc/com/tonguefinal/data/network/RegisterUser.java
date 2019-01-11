@@ -4,27 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.valdesekamdem.library.mdtoast.MDToast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import viola1.agrovc.com.tonguefinal.AppExecutors;
 import viola1.agrovc.com.tonguefinal.app.localserver.request.ReqBeanSignup;
-import viola1.agrovc.com.tonguefinal.app.localserver.request.response.ResBeanSignup;
-import viola1.agrovc.com.tonguefinal.constants.AppNums;
-import viola1.agrovc.com.tonguefinal.constants.EnumAppMessages;
 import viola1.agrovc.com.tonguefinal.data.network.api.APIService;
-import viola1.agrovc.com.tonguefinal.data.network.api.APIUrl;
 import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
-import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.RetrofitService;
 import viola1.agrovc.com.tonguefinal.helper.Encryption;
-import viola1.agrovc.com.tonguefinal.view.Login;
-import viola1.agrovc.com.tonguefinal.view.SignUp;
 
 public class RegisterUser {
     private static final String LOG_TAG = RegisterUser.class.getSimpleName();

@@ -26,6 +26,7 @@ import viola1.agrovc.com.tonguefinal.data.network.LoginUser;
 import viola1.agrovc.com.tonguefinal.data.network.RegisterUser;
 import viola1.agrovc.com.tonguefinal.presentation.viewmodels.HomeViewModelFactory;
 import viola1.agrovc.com.tonguefinal.presentation.viewmodels.LoginRegistrationViewModelFactory;
+import viola1.agrovc.com.tonguefinal.presentation.viewmodels.UserProfileActivityViewModelFactory;
 
 
 /**
@@ -74,10 +75,10 @@ public class InjectorUtils {
         return FetchLanguages.getInstance(context.getApplicationContext(), executors);
     }
 
-//    public static DetailViewModelFactory provideDetailViewModelFactory(Context context, Date date) {
-//        SunshineRepository repository = provideRepository(context.getApplicationContext());
-//        return new DetailViewModelFactory(repository, date);
-//    }
+    public static UserProfileActivityViewModelFactory provideUserProfileViewModelFactory(Context context) {
+        TongueRepository repository = provideRepository(context.getApplicationContext());
+        return new UserProfileActivityViewModelFactory(repository);
+    }
 
     public static HomeViewModelFactory provideMainActivityViewModelFactory(Context context) {
         TongueRepository repository = provideRepository(context.getApplicationContext());

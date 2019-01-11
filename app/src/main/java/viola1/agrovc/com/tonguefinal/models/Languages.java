@@ -4,18 +4,18 @@ package viola1.agrovc.com.tonguefinal.models;
 import viola1.agrovc.com.tonguefinal.data.database.Language;
 
 public class Languages {
-    private Language[] language;
+    private Language[] languages;
 
     public Languages() {
 
     }
 
     public Language[] getLanguages() {
-        return language;
+        return languages;
     }
 
     public void setMessages(Language[] languages) {
-        this.language = languages;
+        this.languages = languages;
     }
 
 }

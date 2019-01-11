@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#500ea1</color>
-    <color name="colorPrimaryDark">#674ea7</color>
+    <color name="colorPrimary">#674ea7</color>
+    <color name="colorPrimaryDark">#500ea1</color>
     <color name="colorAccent">@color/bootstrap_brand_primary</color>
 
     <color name="icon_tint_selected">#fed776</color>
@@ -95,6 +95,7 @@
 
 
     <color name="bg_circle_default">#666666</color>
+    <color name="button_reject">#DD2C00</color>
 
 
 </resources>

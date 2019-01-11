@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -21,4 +22,7 @@ public interface LanguagesDao {
 
     @Query("SELECT * from languages ORDER BY language_id ASC")
     LiveData<List<Language>> getAllLanguages();
+
+    @Query("SELECT COUNT(language_id) FROM languages")
+    int countLanguagesInDb();
 }

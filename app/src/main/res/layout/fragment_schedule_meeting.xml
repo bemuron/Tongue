@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_base"
+    tools:context=".presentation.ui.fragments.ScheduleMeetingFragment">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_meeting_time"
+        android:textColor="@color/white"
+        android:paddingLeft="@dimen/padding_base"
+        android:paddingRight="@dimen/padding_base"
+        android:text="@string/btn_meeting_time" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button_meeting_time"
+        android:layout_toEndOf="@id/button_meeting_time"
+        android:layout_alignBaseline="@id/button_meeting_time"
+        android:id="@+id/meeting_time"
+        android:text="09:10PM" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_meeting_date"
+        android:textColor="@color/white"
+        android:paddingLeft="@dimen/padding_base"
+        android:paddingRight="@dimen/padding_base"
+        android:layout_below="@id/button_meeting_time"
+        android:text="@string/btn_meeting_date" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button_meeting_date"
+        android:layout_toEndOf="@id/button_meeting_date"
+        android:layout_alignBaseline="@id/button_meeting_date"
+        android:id="@+id/meeting_date"
+        android:layout_below="@id/meeting_time"
+        android:text="09/08/18" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/tv_meeting_location"
+        android:layout_below="@id/meeting_date"
+        android:paddingTop="@dimen/padding_huge"
+        android:text="@string/tv_meeting_location"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_text_meeting_location"
+        android:hint="@string/meeting_location_hint"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/tv_meeting_location"/>
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:id="@+id/set_meeting_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:paddingTop="@dimen/padding_base"
+        android:layout_below="@id/edit_text_meeting_location"
+        android:text="@string/set_meeting_schedule"/>
+
+
+</RelativeLayout>

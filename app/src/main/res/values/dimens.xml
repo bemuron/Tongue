@@ -20,6 +20,7 @@
     <!-- Standard Padding Dimensions -->
     <dimen name="padding_low">4dp</dimen>
     <dimen name="padding_base">8dp</dimen>
+    <dimen name="padding_mid_base">10dp</dimen>
     <dimen name="padding_medium">12dp</dimen>
     <dimen name="padding_high">16dp</dimen>
     <dimen name="padding_xhigh">24dp</dimen>
@@ -134,5 +135,6 @@
     <dimen name="second_keyline">72dp</dimen>
     <dimen name="toolbar_horizontal_padding">4dp</dimen>
     <dimen name="button_height">48dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

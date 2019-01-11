@@ -1,18 +1,27 @@
 package viola1.agrovc.com.tonguefinal.presentation.ui.activities;
 
-import android.app.ProgressDialog;
-import android.app.SearchManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,37 +31,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.valdesekamdem.library.mdtoast.MDToast;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import viola1.agrovc.com.tonguefinal.R;
-import viola1.agrovc.com.tonguefinal.constants.AppNums;
-import viola1.agrovc.com.tonguefinal.constants.EnumAppMessages;
-import viola1.agrovc.com.tonguefinal.data.network.SearchResult;
-import viola1.agrovc.com.tonguefinal.data.network.api.APIService;
-import viola1.agrovc.com.tonguefinal.dataloaders.retrofit.LocalRetrofitApi;
-import viola1.agrovc.com.tonguefinal.view.Adapter;
-import viola1.agrovc.com.tonguefinal.view.LanguageSearch;
+import viola1.agrovc.com.tonguefinal.app.Config;
+import viola1.agrovc.com.tonguefinal.app.MyApplication;
+import viola1.agrovc.com.tonguefinal.fcm.MyFirebaseMessagingService;
+import viola1.agrovc.com.tonguefinal.fcm.MyNotificationManager;
+import viola1.agrovc.com.tonguefinal.helper.MyPreferenceManager;
+import viola1.agrovc.com.tonguefinal.helper.SessionManager;
+import viola1.agrovc.com.tonguefinal.models.NotificationMessage;
+import viola1.agrovc.com.tonguefinal.presentation.adapters.LanguagesAdapter;
+import viola1.agrovc.com.tonguefinal.presentation.viewmodels.HomeActivityViewModel;
+import viola1.agrovc.com.tonguefinal.presentation.viewmodels.HomeViewModelFactory;
+import viola1.agrovc.com.tonguefinal.utilities.InjectorUtils;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Adapter.LanguageSearchListListener {
+        implements NavigationView.OnNavigationItemSelectedListener, LanguagesAdapter.LanguagesAdapterOnItemClickHandler {
     private static final String TAG = HomeActivity.class.getSimpleName();
-
-    public static final int CONNECTION_TIMEOUT = 10000;
-    public static final int READ_TIMEOUT = 15000;
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
     private RecyclerView mRV;
-    private Adapter mAdapter;
-    private Context context;
-    SearchView searchView = null;
-    java.util.List<String> IdList = new ArrayList<>();
-    List<LanguageSearch> languageSearchList = new ArrayList<>();
+    private LanguagesAdapter mAdapter;
+    private HomeActivityViewModel mViewModel;
+    private int mPosition = RecyclerView.NO_POSITION;
+    private ProgressBar mLoadingIndicator;
+    private SessionManager session;
+    private String userRole;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +74,120 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //check for play services
+        checkPlayServices();
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+        userRole = session.getUserRole();
+        userId = session.getUserId();
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        //we use this to associate the lifecycle observer(MyApplication) with this class(lifecycle owner)
+        //it'll help us know when the app is in back ground or foreground
+        getLifecycle().addObserver(new MyApplication());
+        /**
+         * Broadcast receiver calls in two scenarios
+         * 1. fcm registration is completed
+         * 2. when new push notification is received
+         * */
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                Log.e(TAG, "Broadcast receiver action: "+intent.getAction());
+                // checking for type intent filter
+                if (Config.REGISTRATION_COMPLETE.equals(intent.getAction())) {
+                    // fcm successfully registered
+                    // now subscribe to `global` topic to receive app wide notifications
+                    subscribeToGlobalTopic();
+
+                    displayFirebaseRegId();
+
+                } else if (Config.PUSH_NOTIFICATION.equals(intent.getAction())) {
+                    //this broadcast is received if the app is in the foreground
+                    //if the session is in progress, launch the relevant activity
+                    Boolean isSessionOn = intent.getBooleanExtra("isSessionOn", false);
+                    Boolean isSessionFinished = intent.getBooleanExtra("session_finished", false);
+                    Boolean rating_activity = intent.getBooleanExtra("rating_activity", false);
+                    if (isSessionOn) {
+                        //get the user id too, to be compared with the logged in users id
+                        //so that if the requester is a tutor too we can still open the right activity
+                        int user_id = getIntent().getIntExtra("user_id", 0);
+                        int session_meeting_id = getIntent().getIntExtra("meeting_id", 0);
+                        if (userRole.equals("user") || userId == user_id) {
+
+                            intent = new Intent(getApplicationContext(), MeetingSessionActivity.class);
+                            intent.putExtra("meeting_id", session_meeting_id);
+                            intent.putExtra("user_id", user_id);
+                            intent.putExtra("start_session", true);
+                            // new push notification is received
+                            String message = intent.getStringExtra("message");
+
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                            startActivity(intent);
+                        }
+                    }
+                    //if the session is complete, load the payment activity
+                    else  if (isSessionFinished){
+                        int user_id = getIntent().getIntExtra("user_id", 0);
+                        int session_meeting_id = getIntent().getIntExtra("meeting_id", 0);
+                        float time_taken = getIntent().getFloatExtra("time_taken", 0);
+                        if (userRole.equals("user") || userId == user_id) {
+                            intent = new Intent(getApplicationContext(), PaymentActivity.class);
+                            intent.putExtra("meeting_id", session_meeting_id);
+                            intent.putExtra("user_id", user_id);
+                            intent.putExtra("time_taken", time_taken);
+
+                        }
+                    }
+                    //if payment is received by the tutor, launch the rating activity
+                    else  if (rating_activity){
+                        int user_id = getIntent().getIntExtra("user_id", 0);
+                        int session_meeting_id = getIntent().getIntExtra("meeting_id", 0);
+                        if (userRole.equals("user") || userId == user_id) {
+                            intent = new Intent(getApplicationContext(), RatingActivity.class);
+                            intent.putExtra("meeting_id", session_meeting_id);
+                            intent.putExtra("student_id", user_id);
+
+                        }
+                    }
+                }
+            }
+        };
+
+
+        // If a notification message is tapped, any data accompanying the notification
+        // message is available in the intent extras. In this sample the launcher
+        // intent is fired when the notification is tapped, so any accompanying data would
+        // be handled here. If you want a different intent fired, set the click_action
+        // field of the notification message to the desired intent. The launcher intent
+        // is used when no click_action is specified.
+        //
+        // Handle possible data accompanying notification message.
+        // [START handle_data_extras]
+        /*if (getIntent().getExtras() != null) {
+            for (String key : getIntent().getExtras().keySet()) {
+                Object value = getIntent().getExtras().get(key);
+                Log.d(TAG, "Key: " + key + " Value: " + value);
+            }
+        }*/
+// [END handle_data_extras]
+
+        mRV = findViewById(R.id.recyclerview_languages);
+        mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
+
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,14 +199,134 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Setup and Handover data to recyclerview
-        mRV = findViewById(R.id.language_list);
-        mAdapter = new Adapter(HomeActivity.this, languageSearchList, this);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         mRV.setLayoutManager(mLayoutManager);
+        mRV.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         mRV.setItemAnimator(new DefaultItemAnimator());
-        mRV.addItemDecoration(new DividerItemDecoration(HomeActivity.this, LinearLayoutManager.VERTICAL));
+        mAdapter = new LanguagesAdapter(this, this);
         mRV.setAdapter(mAdapter);
+
+        HomeViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(this.getApplicationContext());
+        mViewModel = ViewModelProviders.of
+                (this, factory).get(HomeActivityViewModel.class);
+
+        mViewModel.getAllLanguages().observe(this, languages -> {
+            mAdapter.swapForecast(languages);
+
+            if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
+            mRV.smoothScrollToPosition(mPosition);
+
+            Log.i(TAG, "Languages list size "+languages.size());
+
+            // Show the weather list or the loading screen based on whether the forecast data exists
+            // and is loaded
+            if (languages != null && languages.size() != 0) showCategoryDataView();
+            else showLoading();
+
+        });
+
+        /**
+         * Always check for google play services availability before
+         * proceeding further with FCM
+         * */
+        /*if (checkPlayServices()) {
+            registerFCM(session.getUserId());
+            //fetchChatRooms();
+        }*/
+
+        /*MyApplication myApp = (MyApplication)this.getApplication();
+        if(myApp.myApplicationStatus){
+            // register FCM registration complete receiver
+            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter(Config.REGISTRATION_COMPLETE));
+
+            // register new push message receiver
+            // by doing this, the activity will be notified each time a new message arrives
+            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter(Config.PUSH_NOTIFICATION));
+
+        }else{
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        }*/
+        isAppInBackground();
+    }//close onCreate
+
+    //this method gets the fcm device token from shared prefs
+    private void displayFirebaseRegId(){
+        String token = MyApplication.getInstance().getPrefManager().getDeviceToken();
+        //if token is not null
+        if (token != null) {
+            //displaying the token
+            Log.i(TAG, token);
+            //Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        } else {
+            //if token is null that means something wrong
+            Toast.makeText(this, "Token not generated", Toast.LENGTH_SHORT).show();
+        }
     }
+
+    private void isAppInBackground(){
+        if(MyApplication.getInstance().myApplicationStatus){
+            Log.e(TAG, "App resumed");
+            //check for play services
+            checkPlayServices();
+
+            /*mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+
+                    // checking for type intent filter
+                    if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+                        // fcm successfully registered
+                        // now subscribe to `global` topic to receive app wide notifications
+                        subscribeToGlobalTopic();
+
+                        displayFirebaseRegId();
+
+                    } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                        // new push notification is received
+
+                        String message = intent.getStringExtra("message");
+
+                        Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            };*/
+
+            // register FCM registration complete receiver
+            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter(Config.REGISTRATION_COMPLETE));
+
+            // register new push message receiver
+            // by doing this, the activity will be notified each time a new message arrives
+            LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                    new IntentFilter(Config.PUSH_NOTIFICATION));
+
+            // clear the notification area when the app is opened
+            MyNotificationManager.clearNotifications(getApplicationContext());
+        }else {
+            Log.e(TAG, "App paused");
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        }
+    }
+
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+
+        // register FCM registration complete receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.REGISTRATION_COMPLETE));
+
+        // register new push message receiver
+        // by doing this, the activity will be notified each time a new message arrives
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.PUSH_NOTIFICATION));
+
+        // clear the notification area when the app is opened
+        MyNotificationManager.clearNotifications(getApplicationContext());
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -99,13 +338,66 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
+    /*@Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }*/
+
+    // subscribing to global topic
+    private void subscribeToGlobalTopic() {
+        Log.e(TAG, "Subscribing to global topic");
+        // [START subscribe_topics]
+        FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.msg_subscribed);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.msg_subscribe_failed);
+                        }
+                        Log.d(TAG, msg);
+                        //Toast.makeText(HomeActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+// [END subscribe_topics]
+    }
+
+    /**
+     * This method will make the View for the languages data visible and hide the error message and
+     * loading indicator.
+     * <p>
+     * Since it is okay to redundantly set the visibility of a View, we don't need to check whether
+     * each view is currently visible or invisible.
+     */
+    private void showCategoryDataView() {
+        // First, hide the loading indicator
+        mLoadingIndicator.setVisibility(View.INVISIBLE);
+        // Finally, make sure the weather data is visible
+        mRV.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * This method will make the loading indicator visible and hide the languages View and error
+     * message.
+     * <p>
+     * Since it is okay to redundantly set the visibility of a View, we don't need to check whether
+     * each view is currently visible or invisible.
+     */
+    private void showLoading() {
+        // Then, hide the weather data
+        mRV.setVisibility(View.INVISIBLE);
+        // Finally, show the loading indicator
+        mLoadingIndicator.setVisibility(View.VISIBLE);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
 
         // Get Search item from action bar and Get Search service
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        /*MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) HomeActivity.this.getSystemService(Context.SEARCH_SERVICE);
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
@@ -113,7 +405,7 @@ public class HomeActivity extends AppCompatActivity
         if (searchView != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(HomeActivity.this.getComponentName()));
             searchView.setIconified(false);
-        }
+        }*/
         return true;
     }
 
@@ -128,272 +420,191 @@ public class HomeActivity extends AppCompatActivity
         /*if (id == R.id.action_settings) {
             return true;
         }*/
-        if (id == R.id.action_search){
+        if (id == R.id.action_search_link){
+            Intent intent = new Intent(this, SearchLanguagesActivity.class);
+            startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    // Every time when you press search button on keypad an Activity is recreated which in turn calls this function
+    //handle clicks on the language grid items
     @Override
-    protected void onNewIntent(Intent intent) {
-        setIntent(intent);
-        super.onNewIntent(intent);
-        // Get search query and create object of class AsyncFetch
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            // handles a search query
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            searchLanguage(query);
-            //new HomeActivity.AsyncFetch(query).execute();
-            if (searchView != null) {
-                searchView.clearFocus();
-            }
-
-        }
-    }
-
-    private void searchLanguage(String searchQuery){
-        ProgressDialog pdLoading = new ProgressDialog(HomeActivity.this);
-
-        //this method will be running on UI thread
-        pdLoading.setMessage("\tLoading...");
-        pdLoading.setCancelable(false);
-        pdLoading.show();
-
-        APIService service = new LocalRetrofitApi().getRetrofitService();
-
-        //defining the call
-        Call<SearchResult> call = service.searchForLanguage(searchQuery);
-
-        //calling the com.emtech.retrofitexample.api
-        call.enqueue(new Callback<SearchResult>() {
-            @Override
-            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
-
-                if(response.code() == AppNums.STATUS_COD_SUCCESS) {
-                    pdLoading.dismiss();
-
-                    if (response.body().getLanguage_search().size() > 0){
-
-                        //clear the previous search list if it has content
-                        if (languageSearchList != null) {
-                            languageSearchList.clear();
-                        }
-
-                    for (int i = 0; i < response.body().getLanguage_search().size(); i++) {
-
-                        LanguageSearch searchResult = new LanguageSearch();
-                        searchResult.setLanguage_id(response.body().getLanguage_search().get(i).getLanguage_id());
-                        searchResult.setName(response.body().getLanguage_search().get(i).getName());
-                        searchResult.setLanguage_code(response.body().getLanguage_search().get(i).getLanguage_code());
-
-                        languageSearchList.add(searchResult);
-                    }
-
-                    mAdapter.notifyDataSetChanged();
-                    //Log.d(TAG, "language list size = " +languageSearchList.size());
-
-                    //Log.d(TAG, "list size from network "+response.body().getLanguage_search().size());
-                    //Log.d(TAG, "lang name from network "+response.body().getLanguage_search().get(0).getName());
-
-                }else if (response.body().getLanguage_search().size() == 0){
-
-                        Toast.makeText(HomeActivity.this, "No Results found for entered query", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                else if(response.code() == AppNums.STATUS_COD_FILE_NOT_FOUND){
-                    pdLoading.dismiss();
-
-                    Log.e(TAG, EnumAppMessages.ERROR_RESOURCE_NOT_FOUND.getValue());
-
-
-                }else{
-                    pdLoading.dismiss();
-
-
-                    //generalMethods.showLocationDialog(Login.this,EnumAppMessages.LOGIN_ERROR_TITLE.getValue(),EnumAppMessages.ERROR_INTERNAL_ERROR.getValue());
-                    Log.e(TAG, EnumAppMessages.ERROR_INTERNAL_ERROR.getValue());
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SearchResult> call, Throwable t) {
-                pdLoading.dismiss();
-
-                Toast.makeText(HomeActivity.this, "Ooops something went wrong. Please" +
-                        "try again", Toast.LENGTH_SHORT).show();
-                //print out any error we may get
-                //probably server connection
-                Log.e(TAG, t.getMessage());
-            }
-        });
-    }
-
-    // Create class AsyncFetch
-   /* private class AsyncFetch extends AsyncTask<String, String, String> {
-
-        ProgressDialog pdLoading = new ProgressDialog(HomeActivity.this);
-        HttpURLConnection conn;
-        URL url = null;
-        String searchQuery;
-
-        public AsyncFetch(String searchQuery){
-            this.searchQuery=searchQuery;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-
-                // Enter URL address where your php file resides
-                url = new URL(AppProperties.TONGUE_LANGUAGE_SEARCH);
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                Log.e(TAG, e.getMessage());
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                conn.setRequestMethod("POST");
-
-                // setDoInput and setDoOutput to true as we send and recieve data
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                // add parameter to our above url
-                Uri.Builder builder = new Uri.Builder().appendQueryParameter("searchQuery", searchQuery);
-                String query = builder.build().getEncodedQuery();
-
-                OutputStream os = conn.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
-                writer.write(query);
-                writer.flush();
-                writer.close();
-                os.close();
-                conn.connect();
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                Log.e(TAG, e1.getMessage());
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                // Check if successful connection made
-                if (response_code == HttpURLConnection.HTTP_OK) {
-
-                    // Read data sent from server
-                    InputStream input = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                    StringBuilder result = new StringBuilder();
-                    String line;
-
-                    while ((line = reader.readLine()) != null) {
-                        result.append(line);
-                    }
-
-                    // Pass data to onPostExecute method
-                    return (result.toString());
-
-                } else {
-                    return("Connection error");
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            //this method will be running on UI thread
-            pdLoading.dismiss();
-
-            pdLoading.dismiss();
-            if(result.equals("no rows")) {
-                MDToast mdToast = MDToast.makeText(HomeActivity.this, "No Results found for entered query", Toast.LENGTH_LONG,MDToast.TYPE_INFO);
-
-                mdToast.show();
-
-            }else{
-
-                try {
-
-                    JSONArray jArray = new JSONArray(result);
-
-                    // Extract data from json and store into ArrayList as class objects
-                    for (int i = 0; i < jArray.length(); i++) {
-                        JSONObject json_data = jArray.getJSONObject(i);
-
-                        //clear the previous search list if it has content
-                        if (languageSearchList != null){
-                            languageSearchList.clear();
-                        }
-                        LanguageSearch languageSearch = new LanguageSearch();
-                        languageSearch.setLanguage_id(json_data.getInt("language_id"));
-                        languageSearch.setName(json_data.getString("name"));
-                        languageSearch.setLanguage_code(json_data.getString("language_code"));
-
-                        languageSearchList.add(languageSearch);
-                        mAdapter.notifyDataSetChanged();
-                        Log.d(TAG, "language list size = " +languageSearchList.size());
-                    }
-
-                } catch (JSONException e) {
-                    // You to understand what actually error is and handle it appropriately
-                    MDToast mdToast = MDToast.makeText(HomeActivity.this,  e.toString(), Toast.LENGTH_LONG, MDToast.TYPE_ERROR);
-
-                    mdToast.show();
-                    Log.e(TAG, e.getMessage());
-
-                }
-
-            }
-
-        }
-
-    }*/
-
-    //handle clicks on the search results items
-    @Override
-    public void onResultRowClicked(int position){
-        //get the language clicked
-        LanguageSearch languageSearch = languageSearchList.get(position);
-
+    public void onItemClick(int language_id, String language_name) {
         //start Tutor Activity passing in the id of the language clicked
         Intent intent = new Intent(HomeActivity.this, TutorActivity.class);
-        intent.putExtra("language_id", languageSearch.getLanguage_id());
-        intent.putExtra("language_name", languageSearch.getName());
+        intent.putExtra("language_id", language_id);
+        intent.putExtra("language_name", language_name);
         startActivity(intent);
+    }
+
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     * */
+    private void logoutUser() {
+        session.setLogin(false);
+        MyApplication.getInstance().logout();
+        session.logoutUser();
+        mViewModel.delete();
+    }
+
+    /*@Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication myApp = (MyApplication)this.getApplication();
+        if(myApp.myApplicationStatus){
+
+        }
+
+        // register FCM registration complete receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.REGISTRATION_COMPLETE));
+
+        // register new push message receiver
+        // by doing this, the activity will be notified each time a new message arrives
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(Config.PUSH_NOTIFICATION));
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }*/
+
+    // starting the service to register with FCM
+    /*private void registerFCM(int userId) {
+        Intent intent = new Intent(this, MyFirebaseMessagingService.class);
+        intent.putExtra("key", "register");
+        intent.putExtra("userId", userId);
+        startService(intent);
+    }*/
+
+    private void checkPlayServices() {
+        Log.e(TAG, "Checking for GPS");
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported. Google Play Services not installed!");
+                Toast.makeText(getApplicationContext(), "This device is not supported. Google Play Services not installed!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
+
+        /*Toast.makeText(this,"isGPSAvailable " + resultCode,Toast.LENGTH_SHORT).show();
+        switch (resultCode)
+        {
+            case ConnectionResult.API_UNAVAILABLE:
+                //API is not available
+                break;
+            case ConnectionResult.NETWORK_ERROR:
+                //Network error while connection
+                break;
+            case ConnectionResult.RESTRICTED_PROFILE:
+                //Profile is restricted by google so can not be used for play services
+                break;
+            case ConnectionResult.SERVICE_MISSING:
+                //service is missing
+                break;
+            case ConnectionResult.SIGN_IN_REQUIRED:
+                //service available but user not signed in
+                break;
+                case ConnectionResult.SERVICE_INVALID:
+            //  The version of the Google Play services installed on this device is not authentic
+            break;
+            case ConnectionResult.SUCCESS:
+                break;
+        }*/
+    }
+
+    /**
+     * chooses a random color from array.xml
+     */
+    private int getRandomMaterialColor(String typeColor) {
+        int returnColor = Color.GRAY;
+        int arrayId = getResources().getIdentifier("mdcolor_" + typeColor, "array", TutorActivity.instance.getPackageName());
+
+        if (arrayId != 0) {
+            TypedArray colors = getResources().obtainTypedArray(arrayId);
+            int index = (int) (Math.random() * colors.length());
+            returnColor = colors.getColor(index, Color.GRAY);
+            colors.recycle();
+        }
+        return returnColor;
+    }
+
+    /**
+     * RecyclerView item decoration - give equal margin around grid item
+     */
+    public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
+
+        private int spanCount;
+        private int spacing;
+        private boolean includeEdge;
+
+        public GridSpacingItemDecoration(int spanCount, int spacing, boolean includeEdge) {
+            this.spanCount = spanCount;
+            this.spacing = spacing;
+            this.includeEdge = includeEdge;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            int position = parent.getChildAdapterPosition(view); // item position
+            int column = position % spanCount; // item column
+
+            if (includeEdge) {
+                outRect.left = spacing - column * spacing / spanCount; // spacing - column * ((1f / spanCount) * spacing)
+                outRect.right = (column + 1) * spacing / spanCount; // (column + 1) * ((1f / spanCount) * spacing)
+
+                if (position < spanCount) { // top edge
+                    outRect.top = spacing;
+                }
+                outRect.bottom = spacing; // item bottom
+            } else {
+                outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+                outRect.right = spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
+                if (position >= spanCount) {
+                    outRect.top = spacing; // item top
+                }
+            }
+        }
+    }
+
+    /**
+     * Converting dp to pixel
+     */
+    private int dpToPx(int dp) {
+        Resources r = getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+    }
+
+    /**
+     * Email client intent to send support mail
+     * Appends the necessary device information to email body
+     * useful when providing support
+     */
+    private static void sendFeedback(Context context) {
+        String body = null;
+        try {
+            body = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+            body = "\n\n-----------------------------\nPlease don't remove this information\n Device OS: Android \n Device OS version: " +
+                    Build.VERSION.RELEASE + "\n App Version: " + body + "\n Device Brand: " + Build.BRAND +
+                    "\n Device Model: " + Build.MODEL + "\n Device Manufacturer: " + Build.MANUFACTURER;
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc822");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"tongueapp@gmail.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Query from Tongue app user");
+        intent.putExtra(Intent.EXTRA_TEXT, body);
+        context.startActivity(Intent.createChooser(intent, context.getString(R.string.choose_email_client)));
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -402,17 +613,49 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.pending_requests) {
+            // Handle user pending requests
+            Intent intent = new Intent(HomeActivity.this, TutorshipRequestsActivity.class);
+            intent.putExtra("fragment_id", 1);
+            startActivity(intent);
+        } else if (id == R.id.confirmed_requests) {
+            //confirmed requests for the user
+            Intent intent = new Intent(HomeActivity.this, TutorshipRequestsActivity.class);
+            intent.putExtra("fragment_id", 2);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.tutor_pending_requests) {
+            //tutor pending requests
+            Intent intent = new Intent(HomeActivity.this, TutorshipRequestsActivity.class);
+            intent.putExtra("fragment_id", 3);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.tutor_confirmed_requests) {
+            //tutor confirmed requests
+            Intent intent = new Intent(HomeActivity.this, TutorshipRequestsActivity.class);
+            intent.putExtra("fragment_id", 4);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_user_profile) {
+            //user profile
+            Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_about_tongue) {
+            //about tongue
+            Intent intent = new Intent(HomeActivity.this, AboutTongueActivity.class);
+            startActivity(intent);
+
+        } /*else if (id == R.id.nav_share) {
+            //share app
+
+        }*/ else if (id == R.id.nav_feedback) {
+            //feedback
+            sendFeedback(this);
+
+        } else if (id == R.id.nav_user_logout) {
+            //user logout
+            logoutUser();
 
         }
 

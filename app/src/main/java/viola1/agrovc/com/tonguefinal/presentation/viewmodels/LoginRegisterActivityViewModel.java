@@ -25,7 +25,7 @@ public class LoginRegisterActivityViewModel extends ViewModel {
         mRepository = repository;
     }
 
-    public HashMap<String, String> getUserDetails() {
+    /*public HashMap<String, String> getUserDetails() {
         mUser = new HashMap<String, String>();
 
         userDetailsCursor = mRepository.getUser();
@@ -42,7 +42,7 @@ public class LoginRegisterActivityViewModel extends ViewModel {
         Log.d(TAG, "Got user from db: " + mUser.toString());
 
         return mUser;
-    }
+    }*/
 
     //call repository method to handle posting data to server
     public void loginUser(String email, String password){
@@ -53,8 +53,6 @@ public class LoginRegisterActivityViewModel extends ViewModel {
     public boolean registerUser(String email, String password){
         return mRepository.registerTongueUser(email, password);
     }
-
-    /*public void insert(User user) { mRepository.insertUser(user); }*/
 
     public void delete() { mRepository.deleteUser();}
 

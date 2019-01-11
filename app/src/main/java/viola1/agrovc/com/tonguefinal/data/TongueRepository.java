@@ -4,6 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
+
+import java.util.Date;
 import java.util.List;
 
 import viola1.agrovc.com.tonguefinal.AppExecutors;
@@ -37,7 +39,9 @@ public class TongueRepository{
     private boolean mInitialized = false;
     private boolean mUserInitialized = false;
     private UsersDao mUsersDao;
-    private Cursor mUserDetail;
+    //private Cursor mUserDetail;
+    private LiveData<List<User>> mUserDetail;
+    private int mCount;
 
     private TongueRepository(LanguagesDao languagesDao, UsersDao usersDao, FetchLanguages fetchLanguages,
                              RegisterUser registerUser, LoginUser loginUser, AppExecutors executors) {
@@ -71,7 +75,9 @@ public class TongueRepository{
 
         tongueLanguages.observeForever(newLanguagesFromNetwork -> mExecutors.diskIO().execute(() -> {
             // Insert our languages into Tongue database
-            mLanguagesDao.insertLanguage(newLanguagesFromNetwork);
+            if (isFetchNeeded()) {
+                mLanguagesDao.insertLanguage(newLanguagesFromNetwork);
+            }
 
             Log.d(LOG_TAG, newLanguagesFromNetwork.length +" languages inserted");
         }));
@@ -104,9 +110,9 @@ public class TongueRepository{
         if (mInitialized) return;
         mInitialized = true;
 
-        //  if (isFetchNeeded()) {
-//}
-        mExecutors.diskIO().execute(this::startFetchLanguageService);
+        if (isFetchNeeded()) {
+            mExecutors.diskIO().execute(this::startFetchLanguageService);
+        }
     }
 
     private synchronized void initializeUser() {
@@ -129,14 +135,14 @@ public class TongueRepository{
         return mLanguagesDao.getAllLanguages();
     }
 
-    public Cursor getUser(){
-        initializeUser();
-        //mUserDetail = mUsersDao.getUserDetails();
-        mExecutors.diskIO().execute(() ->{
+    public LiveData<List<User>> getUserDetails(){
+        mUserDetail = mUsersDao.getUserDetails();
+        Log.d(LOG_TAG, "Getting user details from sqlite db");
+        /*mExecutors.diskIO().execute(() ->{
             mUserDetail = mUsersDao.getUserDetails();
 
             Log.d(LOG_TAG, "Getting user details from sqlite db");
-        });
+        });*/
 
         return mUserDetail;
     }
@@ -155,7 +161,22 @@ public class TongueRepository{
     //delete user details from db
     //required when user logs out of app
     public void deleteUser (){
-        mUsersDao.deleteUser();
+
+        mExecutors.diskIO().execute(() ->{
+            mUsersDao.deleteUser();
+
+            Log.d(LOG_TAG, " user deleted from db");
+        });
+    }
+
+    //updates the user details in the db
+    public void updateProfile(String name, String description,
+                              String date_of_birth, String gender, int user_id){
+        mExecutors.diskIO().execute(() ->{
+            mUsersDao.updateProfile(name,description,date_of_birth,gender,user_id);
+
+            Log.d(LOG_TAG, " user profile updated");
+        });
     }
 
     /**
@@ -199,6 +220,18 @@ public class TongueRepository{
     //calls service
     public boolean registerTongueUser(String email, String password){
         return mRegisterUser.UserRegister(email, password);
+    }
+
+    /**
+     * Checks if there are more than one language in the db.
+     *
+     * @return Whether a fetch is needed
+     */
+    private boolean isFetchNeeded() {
+        mExecutors.diskIO().execute(() ->{
+            mCount = mLanguagesDao.countLanguagesInDb();
+        });
+        return (mCount < 1);
     }
 
 }

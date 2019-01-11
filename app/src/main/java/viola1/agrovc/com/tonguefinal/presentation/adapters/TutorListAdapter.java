@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import viola1.agrovc.com.tonguefinal.R;
 
 import java.util.List;
@@ -42,8 +45,9 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, content, date, iconText, issueName;
-        public ImageView iconImp, imgProfile;
+        public CircleImageView iconImp, imgProfile;
         public LinearLayout tutorContainer;
+        private RatingBar tutorRating;
         public RelativeLayout iconContainer, iconBack, iconFront;
 
         public MyViewHolder(View view) {
@@ -51,7 +55,6 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.MyVi
             title = view.findViewById(R.id.text_view_tutor_name);
             content = view.findViewById(R.id.text_view_tutor_desc);
             //date = view.findViewById(R.id.text_view_note_date);
-            issueName = view.findViewById(R.id.text_view_tutor_rating);
             iconText = view.findViewById(R.id.icon_text);
             //iconBack = view.findViewById(R.id.icon_back);
             iconFront = view.findViewById(R.id.icon_front);
@@ -59,6 +62,7 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.MyVi
             imgProfile = view.findViewById(R.id.icon_profile);
             tutorContainer = view.findViewById(R.id.tutor_container);
             iconContainer = view.findViewById(R.id.icon_container);
+            tutorRating = view.findViewById(R.id.ratingBarTutorRating);
             //view.setOnLongClickListener(this);
         }
     }
@@ -89,6 +93,7 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.MyVi
         holder.title.setText(tutor.getName());
         holder.content.setText(tutor.getDescription());
         //holder.issueName.setText("Issue: "+ note.getIssueName());
+        holder.tutorRating.setRating(tutor.getTutorRating());
 
         // displaying the first letter of From in icon text
         holder.iconText.setText(tutor.getName().substring(0, 1));
@@ -115,7 +120,7 @@ public class TutorListAdapter extends RecyclerView.Adapter<TutorListAdapter.MyVi
 
     private void applyProfilePicture(MyViewHolder holder, Tutor tutor) {
         if (!TextUtils.isEmpty(tutor.getProfile_pic())) {
-            Glide.with(context).load(tutor.getProfile_pic())
+            Glide.with(context).load("http://apps.incubation.billbrain.tech/tongueApp/assets/images/profile_pics/"+tutor.getProfile_pic())
                     .thumbnail(0.5f)
                     .into(holder.imgProfile);
             holder.imgProfile.setColorFilter(null);

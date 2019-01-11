@@ -11,10 +11,17 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
+    <!-- <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> -->
+    <!--
+<permission
+        android:name="com.example.gcm.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />
+    -->
     <application
-        android:name=".view.MyApplication"
+        android:name=".app.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo3"
         android:label="@string/app_name"
@@ -29,50 +36,40 @@
             </intent-filter>
         </activity>
 
-        <!-- Register Activity -->
+        <!-- Register Activity android:windowSoftInputMode="adjustPan" -->
         <activity
             android:name=".presentation.ui.activities.RegisterActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan" />
+            android:launchMode="singleTop" />
 
         <!-- Home Activity -->
         <activity
             android:name=".presentation.ui.activities.HomeActivity"
-            android:launchMode="singleTop"
-            android:label="@string/app_name">
-            <!-- Receives the search request. -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-                <!-- No category needed, because the Intent will specify this class component-->
-            </intent-filter>
-
-            <!-- Points to searchable meta data. -->
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
-
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop" />
         <activity
             android:name=".presentation.ui.activities.TutorActivity"
             android:label="@string/action_tutor_activity"
-            android:launchMode="singleTop" />
-
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.activities.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="viola1.agrovc.com.tonguefinal.presentation.ui.activities.HomeActivity" />
+        </activity>
         <activity
             android:name=".splashed.ActivitySplash"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible" />
-        <activity
-            android:name=".view.Login"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible" />
-        <activity
-            android:name=".view.SignUp"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Others.AdminContact"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <!-- This is required for immediate syncs -->
         <service
@@ -85,10 +82,123 @@
             android:name=".data.network.UserRegistrationIntentService"
             android:exported="false" />
 
-        <!-- Points to searchable activity so the whole app can invoke search. -->
-        <meta-data android:name="android.app.default_searchable"
-            android:value=".presentation.ui.activities.HomeActivity" />
+        <!-- [START fcm_default_icon] -->
+        <!--
+             Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher_foreground" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <!-- [END fcm_default_icon] -->
 
+
+        <!-- [START fcm_default_channel] -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <!-- [END fcm_default_channel] -->
+
+
+        <!-- Points to searchable activity so the whole app can invoke search. -->
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".presentation.ui.activities.SearchLanguagesActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".presentation.ui.activities.TutorshipRequestsActivity"
+            android:label="@string/title_activity_tutorship_requests"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.activities.HomeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="viola1.agrovc.com.tonguefinal.presentation.ui.activities.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.ui.activities.SearchLanguagesActivity"
+            android:label="@string/search_activity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.activities.HomeActivity">
+
+            <!-- Receives the search request. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <!-- No category needed, because the Intent will specify this class component -->
+            </intent-filter>
+
+            <!-- Points to searchable meta data. -->
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="viola1.agrovc.com.tonguefinal.presentation.ui.activities.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.ui.activities.UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:parentActivityName=".presentation.ui.activities.HomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="viola1.agrovc.com.tonguefinal.presentation.ui.activities.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.ui.activities.AboutTongueActivity"
+            android:label="@string/about_tongue_text"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".presentation.ui.activities.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="viola1.agrovc.com.tonguefinal.presentation.ui.activities.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".presentation.ui.activities.EditUserProfileActivity"
+            android:label="@string/title_activity_edit_user_profile"
+            android:parentActivityName=".presentation.ui.activities.UserProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="viola1.agrovc.com.tonguefinal.presentation.ui.activities.UserProfileActivity" />
+        </activity>
+
+        <activity android:name=".presentation.ui.activities.MeetingSessionActivity"
+            android:screenOrientation="portrait"
+                  android:theme="@style/AppTheme">
+        </activity>
+
+        <activity
+            android:name=".presentation.ui.activities.BecomeTutorActivity"
+            android:label="@string/title_activity_become_tutor"
+            android:parentActivityName=".presentation.ui.activities.UserProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="viola1.agrovc.com.tonguefinal.presentation.ui.activities.UserProfileActivity" />
+        </activity>
+
+        <activity android:name=".presentation.ui.activities.RatingActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name=".presentation.ui.activities.PaymentActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

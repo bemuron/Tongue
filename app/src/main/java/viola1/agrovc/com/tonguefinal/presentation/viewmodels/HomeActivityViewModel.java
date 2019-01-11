@@ -30,5 +30,8 @@ public class HomeActivityViewModel extends ViewModel {
     // the implementation of insert() is completely hidden from the UI.
     //public void insert(Category category) { mRepository.insert(category); }
 
+    //deletes user from sqlite db
+    public void delete() { mRepository.deleteUser();}
+
 
 }

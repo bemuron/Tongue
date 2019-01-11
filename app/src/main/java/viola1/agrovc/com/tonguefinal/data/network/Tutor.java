@@ -16,7 +16,7 @@ public class Tutor {
 
     private String phone_number;
 
-    private float rating;
+    private float tutorRating;
 
     private int color = -1;
 
@@ -84,11 +84,11 @@ public class Tutor {
         this.phone_number = phone_number;
     }
 
-    public float getRating() {
-        return rating;
+    public float getTutorRating() {
+        return tutorRating;
     }
 
-    public void setRating(float rating) {
-        this.rating = rating;
+    public void setTutorRating(float tutorRating) {
+        this.tutorRating = tutorRating;
     }
 }

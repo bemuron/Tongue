@@ -15,46 +15,45 @@
 
     <LinearLayout
         android:id="@+id/tutor_container"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
-        android:paddingLeft="72dp"
-        android:paddingRight="@dimen/padding_high"
         android:paddingStart="72dp"
-        android:paddingEnd="@dimen/padding_high">
+        android:paddingLeft="72dp"
+        android:paddingEnd="@dimen/padding_high"
+        android:paddingRight="@dimen/padding_high">
 
         <TextView
             android:id="@+id/text_view_tutor_name"
-            android:text="Tutor Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
             android:lines="1"
+            android:text="Tutor Name"
             android:textColor="@color/black"
             android:textSize="@dimen/text_medium"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text_view_tutor_desc"
-            android:text="Sample note content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
+            android:text="Sample note content"
             android:textColor="@color/black"
             android:textSize="@dimen/text_base"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/text_view_tutor_rating"
-            android:layout_width="match_parent"
+        <RatingBar
+            android:id="@+id/ratingBarTutorRating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:text="Issue: "
-            android:lines="1"
-            android:textSize="@dimen/text_base" />
+            android:isIndicator="true"
+            android:rating="1.2"
+            android:stepSize="1.0" />
 
     </LinearLayout>
 
@@ -69,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/icon_profile"
                 android:layout_width="@dimen/icon_width_height"
                 android:layout_height="@dimen/icon_width_height"

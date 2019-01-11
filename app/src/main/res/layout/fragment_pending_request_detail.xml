@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_base"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".presentation.ui.fragments.PendingRequestDetailFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/prdProfilePicImageView"
+            android:layout_width="103dp"
+            android:layout_height="101dp"
+            android:src="@drawable/profile_image_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/prdNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="John Mukasa"
+            android:textAppearance="@style/Toolbar.TitleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdProfilePicImageView" />
+
+        <RatingBar
+            android:id="@+id/prdRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:rating="1.2"
+            android:stepSize="1.0"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdNameTextView" />
+
+        <TextView
+            android:id="@+id/prdAgeHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:text="Age:"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/prdAgeTextView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/prdGenderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Male"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/prdRatingBar"
+            app:layout_constraintTop_toBottomOf="@+id/prdRatingBar" />
+
+        <TextView
+            android:id="@+id/prdAboutTextView"
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="About;"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdAgeHeaderTextView" />
+
+        <TextView
+            android:id="@+id/prdDescTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/padding_base"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdAboutTextView" />
+
+        <TextView
+            android:id="@+id/prdLanguagesSpokenHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:text="Languages Spoken"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdDescTextView" />
+
+        <TextView
+            android:id="@+id/prdLanguagesSpokenTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdLanguagesSpokenHeaderTextView" />
+
+        <Button
+            android:id="@+id/prdConfirmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/bar"
+            android:gravity="center"
+            android:text="Accept"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdEditMeetingscheduleButton" />
+
+        <TextView
+            android:id="@+id/prdAgeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="26"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/prdAgeHeaderTextView"
+            app:layout_constraintTop_toBottomOf="@+id/prdRatingBar" />
+
+        <TextView
+            android:id="@+id/prdGenderHeaderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Gender:"
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintEnd_toStartOf="@+id/prdGenderTextView"
+            app:layout_constraintTop_toBottomOf="@+id/prdRatingBar" />
+
+        <Button
+            android:id="@+id/prdRejectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/button_reject"
+            android:text="No Thanks"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/prdConfirmButton"
+            app:layout_constraintTop_toBottomOf="@+id/prdEditMeetingscheduleButton" />
+
+        <TextView
+            android:id="@+id/prdScheduledMeetingTimeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="Scheduled meeting time for meeting"
+            android:textAppearance="@style/Toolbar.TitleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdLanguagesSpokenTextView" />
+
+        <TextView
+            android:id="@+id/prdDateHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date: "
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/prdScheduledMeetingDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/prdScheduledMeetingDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:text="09/11/18"
+            app:layout_constraintStart_toEndOf="@+id/prdDateHeader"
+            app:layout_constraintTop_toBottomOf="@+id/prdScheduledMeetingTimeHeader" />
+
+        <TextView
+            android:id="@+id/prdTimeHeaderTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Time: "
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/prdScheduledMeetingTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/prdScheduledMeetingDate" />
+
+        <TextView
+            android:id="@+id/prdScheduledMeetingTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:text="09:30am"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/prdTimeHeaderTV"
+            app:layout_constraintTop_toBottomOf="@+id/prdScheduledMeetingTimeHeader" />
+
+        <TextView
+            android:id="@+id/prdMeetingLocationHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Location: "
+            android:textAppearance="@style/Toolbar.SubTitleText"
+            app:layout_constraintBaseline_toBaselineOf="@+id/prdMeetingLocation"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/prdMeetingLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:text="Kampala"
+            app:layout_constraintStart_toEndOf="@+id/prdMeetingLocationHeader"
+            app:layout_constraintTop_toBottomOf="@+id/prdScheduledMeetingDate" />
+
+        <Button
+            android:id="@+id/prdEditMeetingscheduleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Change schedule details"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdMeetingLocation" />
+
+        <Button
+            android:id="@+id/startSessionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Start Session"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prdEditMeetingscheduleButton" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "562855187795",
+    "firebase_url": "https://tonguefinal-a45dc.firebaseio.com",
+    "project_id": "tonguefinal-a45dc",
+    "storage_bucket": "tonguefinal-a45dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562855187795:android:295277a5b4f5c946",
+        "android_client_info": {
+          "package_name": "viola1.agrovc.com.tonguefinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562855187795-ga9sd9vi4cgdnjn590u4u6l87cj3jm6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "viola1.agrovc.com.tonguefinal",
+            "certificate_hash": "6486f94767a40670ec42b2af20c5df3a38439f2b"
+          }
+        },
+        {
+          "client_id": "562855187795-h120s3q0kp38m2mdp5ict6d7km629pkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB12y5D2osMNt4tlpC2Y5qxMbB0QQm_Ep8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562855187795-h120s3q0kp38m2mdp5ict6d7km629pkj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

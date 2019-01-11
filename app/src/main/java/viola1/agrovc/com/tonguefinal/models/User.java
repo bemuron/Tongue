@@ -15,10 +15,14 @@ public final class User {
     private static final String KEY_GENDER = "gender";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_UID = "user_id";
+    private static final String KEY_ROLE = "role";
+    private static final String KEY_DESCRIPTION = "description";
+    private static final String KEY_PROFILE_PIC = "profile_pic";
+    private static final String KEY_PHONE_NUMBER = "phone_number";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_CREATED_ON = "created_on";
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = KEY_UID)
     private int user_id;
 
@@ -28,6 +32,18 @@ public final class User {
 
     @ColumnInfo(name = KEY_EMAIL)
     private String email;
+
+    @ColumnInfo(name = KEY_ROLE)
+    private String role;
+
+    @ColumnInfo(name = KEY_DESCRIPTION)
+    private String description;
+
+    @ColumnInfo(name = KEY_PROFILE_PIC)
+    private String profile_pic;
+
+    @ColumnInfo(name = KEY_PHONE_NUMBER)
+    private String phone_number;
 
     @ColumnInfo(name = KEY_GENDER)
     private String gender;
@@ -101,6 +117,22 @@ public final class User {
         this.created_on = created_on;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setProfile_pic(String profile_pic) {
+        this.profile_pic = profile_pic;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
     public int getUser_id() {
         return user_id;
     }
@@ -127,5 +159,21 @@ public final class User {
 
     public String getCreated_on() {
         return created_on;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getProfile_pic() {
+        return profile_pic;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
     }
 }

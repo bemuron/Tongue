@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".presentation.ui.fragments.SessionInProgressFragment">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+         - This Guideline divides the screen into a left half and a right half and is used to        -
+         - anchor the views to the middle of the screen.                                             -
+         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <android.support.constraint.Guideline
+            android:id="@+id/horizontal_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"
+            tools:layout_editor_absoluteX="192dp"
+            tools:layout_editor_absoluteY="0dp"/>
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+         - start the session                                                                              -
+         -                                                                                           -
+         - You may notice that the line android:fontFamily="sans-serif" is highlighted in yellow.    -
+         - The reason for the highlighted line is that the fontFamily attribute is not available on  -
+         - versions of Android before 16, and our minimum supported version of Android is 10. This   -
+         - particular issue won't break the app, but you should note that this attribute will be     -
+         - ignored on devices that run an Android version less than 16.                              -
+         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <TextView
+            android:id="@+id/session_in_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_very_large"
+            app:layout_constraintBottom_toTopOf="@+id/tutor_icon_sip"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="@string/session_in_progress"/>
+
+        <!-- Tutor image -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/tutor_icon_sip"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/horizontal_middle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.18"
+            tools:src="@drawable/profile_image_placeholder" />
+
+        <!-- Tutor name -->
+        <TextView
+            android:id="@+id/tutor_name_sip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintLeft_toLeftOf="@+id/tutor_icon_sip"
+            app:layout_constraintRight_toRightOf="@+id/tutor_icon_sip"
+            app:layout_constraintTop_toBottomOf="@+id/tutor_icon_sip"
+            tools:text="John Doe"/>
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+         - User/student image                                                                -
+         -                                                                                           -
+         - You may notice that the line android:fontFamily="sans-serif" is highlighted in yellow.    -
+         - The reason for the highlighted line is that the fontFamily attribute is not available on  -
+         - versions of Android before 16, and our minimum supported version of Android is 10. This   -
+         - particular issue won't break the app, but you should note that this attribute will be     -
+         - ignored on devices that run an Android version less than 16.                              -
+         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/student_icon_sip"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tutor_icon_sip"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintLeft_toLeftOf="@+id/horizontal_middle"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tutor_icon_sip"
+            tools:src="@drawable/profile_image_placeholder"/>
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+         - User/student name                                                                 -
+         -                                                                                           -
+         - You may notice that the line android:fontFamily="sans-serif" is highlighted in yellow.    -
+         - The reason for the highlighted line is that the fontFamily attribute is not available on  -
+         - versions of Android before 16, and our minimum supported version of Android is 10. This   -
+         - particular issue won't break the app, but you should note that this attribute will be     -
+         - ignored on devices that run an Android version less than 16.                              -
+         - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <TextView
+            android:id="@+id/student_name_sip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tutor_name_sip"
+            app:layout_constraintLeft_toLeftOf="@+id/student_icon_sip"
+            app:layout_constraintRight_toRightOf="@+id/student_icon_sip"
+            tools:text="John Doe"/>
+
+        <TextView
+            android:id="@+id/session_language_sip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutor_icon_sip"
+            tools:text="Language: "/>
+
+        <TextView
+            android:id="@+id/session_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            android:textSize="30sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/session_language_sip"
+            tools:text="00hrs :00mins : 00secs" />
+
+        <Button
+            android:id="@+id/pause_session_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/session_timer"
+            tools:text="@string/pause_session"/>
+
+        <Button
+            android:id="@+id/finish_session_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:text="Finish"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/session_timer"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/resumeSessionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginTop="20dp"
+            android:text="Resume"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/session_timer"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
